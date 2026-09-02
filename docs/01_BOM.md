@@ -61,7 +61,9 @@ The following were all surfaced in the same Amazon.de marketplace ecosystem duri
 
 **Battery:** V1 is designed around 550-650 mAh. The included cradle concept assumes approximately 62×20×8 mm maximum outer dimensions. Measure the ordered pack before printing the final cradle.
 
-**Camera:** current XIAO Sense production uses OV3660. Old OV2640 stock exists; the Seeed camera API remains compatible, but the current BOM targets OV3660.
+**Camera:** current XIAO Sense production uses OV3660. Old OV2640 stock exists; the Seeed camera API remains compatible, but the current BOM targets OV3660. In practice, the unit ordered via `09_AMAZON_ORDER_LIST_DE.md` on 2026-09-02 turned out to be OV2640 — check what actually arrives before assuming either sensor.
+
+**Battery connector:** the BOM assumes PH2.0, but 1S packs are also commonly sold with BT2.0 (e.g. BETAFPV). Wire the power board's pigtail to match your actual battery — see the connector note in `02_ELECTRICAL.md`.
 
 ## Estimated cost
 

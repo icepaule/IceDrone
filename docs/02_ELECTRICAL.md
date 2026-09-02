@@ -97,9 +97,11 @@ Use a star-like layout: battery ground enters the motor-driver board near the bu
 2. check every MOSFET source is GND;
 3. check each drain goes only to its motor negative and flyback diode anode;
 4. verify diode polarity;
-5. verify PH2.0 polarity with a multimeter;
+5. verify battery connector polarity with a multimeter (PH2.0 as designed, or BT2.0 if your battery uses that connector instead — see `09_AMAZON_ORDER_LIST_DE.md`);
 6. power from a current-limited bench supply at 3.7 V first if available;
 7. only then install the XIAO, still **without propellers**.
+
+> Connector note: some 1S packs (e.g. BETAFPV Aquila16) ship with **BT2.0**, not PH2.0. Wire the power board's battery pigtail to match whatever connector your actual battery uses — either fit a BT2.0 pigtail, or use a BT2.0-to-PH2.0 adapter — and always charge with a charger rated for that pack's chemistry/voltage (3.8 V-nominal LiHV packs want a matching LiHV charger, not a fixed-4.20 V one).
 
 ---
 [← 01 - BOM](01_BOM.md) | [Docs index](README.md) | Next: [03 - Mechanical →](03_MECHANICAL.md)

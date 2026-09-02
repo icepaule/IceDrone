@@ -60,7 +60,7 @@ For each channel, in order:
 4. Solder the SS14 flyback diode (D1-D4): cathode to VBAT, anode to the MOSFET drain / motor negative node.
 5. Continuity-test with the multimeter: GND-to-source = short, drain-to-cathode-side = diode drop only (not a dead short), gate-to-GND through the 100 kΩ pulldown (not a short).
 6. Only after all four channels pass step 5, solder the shared bulk capacitors: C1 (470 µF) across VBAT/GND at the motor stage, C2 (100 µF) across VBAT/GND near the XIAO BAT input, C3 (100 nF) near the IMU supply.
-7. Solder the battery connector (PH2.0 pigtail), then the four motor leads (do not decide final rotation direction yet — that is Stage G).
+7. Solder the battery connector — a PH2.0 pigtail as designed, or whatever connector your actual battery uses (e.g. BT2.0, see `09_AMAZON_ORDER_LIST_DE.md`) — then the four motor leads (do not decide final rotation direction yet — that is Stage G).
 8. Wire the XIAO and IMU last: VBAT ADC divider (R9/R10) from VBAT to GPIO1, IMU SDA/SCL to GPIO2/GPIO43, IMU power to the XIAO 3V3 rail.
 
 ## Stage C - polarity and current-limited power-up
@@ -68,7 +68,7 @@ For each channel, in order:
 With the XIAO still **not installed**:
 
 1. Measure resistance VBAT-to-GND with the multimeter: must show no hard short (expect a high resistance / open reading, not near 0 Ω).
-2. Verify PH2.0 connector polarity against the battery with the multimeter before ever plugging it in.
+2. Verify the battery connector's polarity against the battery with the multimeter before ever plugging it in (PH2.0 or BT2.0, whichever your pack uses).
 3. Connect a bench supply at 3.7 V with a 100 mA current limit, no motors' propellers fitted and no battery connected yet.
 4. Confirm the supply stays in constant-voltage mode (not tripping the current limit) with the board otherwise unpowered — this rules out a gross short before any active part is powered.
 5. Raise the current limit in small steps only after step 4 passes, then reconnect motors and repeat, watching for any channel drawing current with no GPIO driven.

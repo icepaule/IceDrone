@@ -22,6 +22,16 @@ Convenience shopping list with direct Amazon.de links for most of the [Bill of M
 | 1S LiHV charger, 4.35 V, PH2.0 | 1 | [GTIWUNG 6-channel 3.8V/4.35V charger](https://www.amazon.de/GTIWUNG-Batterie-Ladeger%C3%A4t-JST-PH-Steckverbinder-T579/dp/B0BN3YLDTN) | Confirm the 4.35 V LiHV mode is selectable, not fixed at 4.2 V. |
 | Carrier/perfboard | 1 | [QWORK 32-piece double-sided perfboard set](https://www.amazon.de/Doppelseitiges-PCB-Prototyp-Lochrasterplatine-Kompatibel-Projekten/dp/B0DRY97XBK) | Cut to the ~20-30 mm size needed. |
 
+## What was actually ordered (2026-09-02)
+
+The real order deviated from the table above in two build-relevant ways — noted here so the rest of the docs can be read against what is actually arriving, not just what was suggested:
+
+- **Battery connector is BT2.0, not PH2.0.** The battery ordered is a BETAFPV Aquila16 650 mAh 1S 60C 3.8V pack with a **BT2.0** connector, paired with a BETAFPV BT2.0 charger. A separate GTIWUNG PH2.0 charger (3.7V/4.20V variant, not the 4.35V LiHV one from the table) was also ordered. **Practical consequence:** wire the power board's battery pigtail as BT2.0 (or fit a BT2.0-to-PH2.0 adapter) instead of the PH2.0 pigtail assumed in `01_BOM.md`/`02_ELECTRICAL.md`/`05_BUILD_AND_TEST.md` — verify polarity on the BT2.0 pair the same way (multimeter against the pack) before plugging in. Charge the pack with the BETAFPV BT2.0 charger (matched to it by the vendor), not the 4.20V PH2.0 charger, since this is a 3.8V-nominal (LiHV-chemistry) cell.
+- **XIAO ESP32-S3 Sense camera confirmed as OV2640**, matching the Amazon.de listing title rather than the OV3660 current-production assumption in `01_BOM.md`. This is expected to still work with the same bench-test firmware and Open32Drone's camera backend (see `01_BOM.md`, "Camera"), just at OV2640's sensor characteristics rather than OV3660's.
+- Motors were sourced as "sourcing map 8520 Hollow Shell Motors + 4x 75 mm props" instead of the hobbypower listing — shaft diameter still needs to be verified at Stage A of `05_BUILD_AND_TEST.md` before committing to the build.
+
+Arrival windows reported at order time: main electronics/battery/charger order and the MOSFET/motor orders arriving by 10-11 September 2026; the GY-91 arriving later, 16-21 September 2026.
+
 ## Why these links are not pinned elsewhere in the docs
 
 `01_BOM.md` and `SOURCES.md` deliberately avoid freezing marketplace ASINs, because Amazon.de sellers and variants change often (see "Verification policy" in `SOURCES.md`). This file is the exception made on request, as a dated, disposable shopping aid rather than an authoritative source — re-derive it (or re-run the searches) rather than trusting it long after 2026-09-02.
