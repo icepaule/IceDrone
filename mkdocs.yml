@@ -1,0 +1,59 @@
+site_name: IceDrone - ESP32CAM MicroDrone V1
+site_description: Documentation, BOM, CAD and bench-test firmware for a XIAO ESP32-S3 Sense based Open32Drone micro-drone.
+repo_url: https://github.com/icepaule/IceDrone
+repo_name: icepaule/IceDrone
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - toc.follow
+
+validation:
+  links:
+    # docs/*.md intentionally link to source files outside docs_dir
+    # (bom/, cad/, hardware/, firmware/) that GitHub resolves directly
+    # but this site cannot serve; don't fail the build over those.
+    not_found: info
+    unrecognized_links: info
+
+markdown_extensions:
+  - tables
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+
+nav:
+  - Home: README.md
+  - "01 - Bill of Materials": 01_BOM.md
+  - "02 - Electrical": 02_ELECTRICAL.md
+  - "03 - Mechanical": 03_MECHANICAL.md
+  - "04 - Firmware": 04_FIRMWARE.md
+  - "05 - Build and Test": 05_BUILD_AND_TEST.md
+  - "06 - First Flight": 06_FIRST_FLIGHT.md
+  - "07 - Safety and Legal (DE/EU)": 07_SAFETY_AND_LEGAL_DE.md
+  - "08 - Troubleshooting": 08_TROUBLESHOOTING.md
+  - Sources: SOURCES.md

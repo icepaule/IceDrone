@@ -1,3 +1,5 @@
+[← Docs index](README.md)
+
 # 06 - First Flight
 
 ## Environment
@@ -67,3 +69,6 @@ Common non-PID faults that look like bad tuning:
 - battery moving in cradle
 - motor electrical noise causing I2C errors
 - insufficient battery discharge capability
+
+---
+[← 05 - Build and Test](05_BUILD_AND_TEST.md) | [Docs index](README.md) | Next: [07 - Safety and Legal →](07_SAFETY_AND_LEGAL_DE.md)

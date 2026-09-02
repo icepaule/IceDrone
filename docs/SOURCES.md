@@ -1,3 +1,5 @@
+[← Docs index](README.md)
+
 # Sources
 
 Checked 2026-09-02.
@@ -37,3 +39,6 @@ Key facts verified from current documentation:
 ## Verification policy
 
 A URL in this document records what was checked, not a guarantee of future availability. Before ordering, confirm the shaft diameter, connector, camera version, dimensions and stock state on the seller's current page.
+
+---
+[← 08 - Troubleshooting](08_TROUBLESHOOTING.md) | [Docs index](README.md)

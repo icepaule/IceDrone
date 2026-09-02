@@ -1,3 +1,5 @@
+[← Docs index](README.md)
+
 # 04 - Firmware
 
 ## Strategy
@@ -91,3 +93,6 @@ pio device monitor
 **Remove all propellers before running it.**
 
 Note: the bench sketch uses Adafruit MPU6050 for a simple library-based smoke test. If the final board uses GY-91/MPU9250, validate it with Open32Drone's actual IMU backend as part of the upstream bring-up.
+
+---
+[← 03 - Mechanical](03_MECHANICAL.md) | [Docs index](README.md) | Next: [05 - Build and Test →](05_BUILD_AND_TEST.md)

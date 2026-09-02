@@ -1,10 +1,14 @@
+[← Docs index](README.md)
+
 # 03 - Mechanical
 
-> CAD sources (`cad/*.scad`, STL exports and renders) are not yet part of this repository. This document records the design intent and print settings so the frame can be reproduced once the CAD files are added.
+CAD sources: [`cad/frame_v1.scad`](../cad/frame_v1.scad), [`cad/camera_cradle_15deg.scad`](../cad/camera_cradle_15deg.scad), [`cad/battery_cradle_650.scad`](../cad/battery_cradle_650.scad), [`cad/prop_guard_corner.scad`](../cad/prop_guard_corner.scad). STL exports are in [`cad/stl/`](../cad/stl/), ready to slice.
 
 ## Frame geometry
 
 The V1 frame is a 123 mm diagonal Quad-X frame. Motor centers are at ±43.49 mm X/Y. Adjacent motor spacing is ~87 mm. A 76 mm prop has 38 mm radius, leaving about 11 mm theoretical gap between neighboring prop discs.
+
+![Frame v1 render](assets/frame_v1.png)
 
 ```mermaid
 flowchart TB
@@ -36,15 +40,23 @@ flowchart TB
 
 An open cradle for the XIAO Sense stack, with a nominal 15° camera attitude, intentionally open for cooling: the XIAO Sense can become hot during continuous Wi-Fi/camera load.
 
+![Camera cradle render](assets/camera_cradle_15deg.png)
+
 Recommended material: TPU 95A. PETG works for initial fitting but transmits more vibration.
 
 ## Battery cradle
 
 Targets batteries up to roughly 62×20×8 mm. Battery dimensions vary substantially even at the same capacity. Measure your actual pack before final printing and adjust the cradle dimensions if needed.
 
+![Battery cradle render](assets/battery_cradle_650.png)
+
+`battery_length`, `battery_width` and `battery_height` are exposed as the first three variables in `cad/battery_cradle_650.scad` — edit them to match your actual pack and re-render/re-slice.
+
 ## Optional prop guard
 
 A corner guard is optional and is **not** part of the weight target. Print four if you are doing low-energy indoor testing. Remove them for the best thrust-to-weight ratio.
+
+![Prop guard render](assets/prop_guard_corner.png)
 
 ## Kobra S1 print settings
 
@@ -80,3 +92,6 @@ Print a single 12.8 mm OD / 8.65 mm ID motor cup test before printing the whole 
 ## Center of gravity
 
 Place the battery below the center plate and slide it longitudinally until CG is under the geometric center. The camera should face toward the front between the two front motors. The IMU should be as close to the center as practical and mounted flat relative to the frame axes.
+
+---
+[← 02 - Electrical](02_ELECTRICAL.md) | [Docs index](README.md) | Next: [04 - Firmware →](04_FIRMWARE.md)

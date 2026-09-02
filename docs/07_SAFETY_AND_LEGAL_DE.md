@@ -1,3 +1,5 @@
+[← Docs index](README.md)
+
 # 07 - Safety and Legal (DE/EU)
 
 This section is a practical engineering reminder, not legal advice. Re-check official rules before operation because requirements can change.
@@ -25,3 +27,6 @@ Useful starting points:
 ## Wi-Fi/video
 
 The XIAO uses 2.4 GHz Wi-Fi. Keep the design within the module's certified radio configuration and antenna arrangement; do not add unapproved high-power RF amplifiers.
+
+---
+[← 06 - First Flight](06_FIRST_FLIGHT.md) | [Docs index](README.md) | Next: [08 - Troubleshooting →](08_TROUBLESHOOTING.md)

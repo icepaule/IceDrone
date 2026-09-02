@@ -1,6 +1,8 @@
+[← Docs index](README.md)
+
 # 02 - Electrical
 
-![V1 wiring overview](../hardware/wiring.svg)
+![V1 wiring overview](assets/wiring.svg)
 
 Full motor-stage netlist: [`hardware/motor_stage_netlist.csv`](../hardware/motor_stage_netlist.csv). Pin map: [`hardware/pinmap.csv`](../hardware/pinmap.csv).
 
@@ -98,3 +100,6 @@ Use a star-like layout: battery ground enters the motor-driver board near the bu
 5. verify PH2.0 polarity with a multimeter;
 6. power from a current-limited bench supply at 3.7 V first if available;
 7. only then install the XIAO, still **without propellers**.
+
+---
+[← 01 - BOM](01_BOM.md) | [Docs index](README.md) | Next: [03 - Mechanical →](03_MECHANICAL.md)

@@ -1,3 +1,5 @@
+[← Docs index](README.md)
+
 # 01 - Bill of Materials (BOM)
 
 **Verification date:** 2026-09-02. Availability and prices are volatile; re-check before ordering.
@@ -72,3 +74,6 @@ A realistic V1 budget, excluding tools and radio transmitter, is approximately *
 - dedicated RC transmitter
 - BT2.0/A30 battery connector conversion for lower connector loss
 - custom 30×30 mm carrier PCB after the prototype is validated
+
+---
+[← Docs index](README.md) | Next: [02 - Electrical →](02_ELECTRICAL.md)

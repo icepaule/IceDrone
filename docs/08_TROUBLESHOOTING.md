@@ -1,3 +1,5 @@
+[← Docs index](README.md)
+
 # 08 - Troubleshooting
 
 ## XIAO resets when motors start
@@ -51,3 +53,6 @@ Do not tune PID. Check, in order:
 ## ESP32 build breaks after library/core update
 
 Return to the last recorded tested toolchain. Flight firmware should be treated like embedded production software: pin the framework and library versions and re-run the full validation plan after any update.
+
+---
+[← 07 - Safety and Legal](07_SAFETY_AND_LEGAL_DE.md) | [Docs index](README.md) | Next: [Sources →](SOURCES.md)
