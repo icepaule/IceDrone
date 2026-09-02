@@ -1,0 +1,13 @@
+Function,XIAO pin/GPIO,Direction,Notes
+IMU SDA,D1 / GPIO2,I/O,I2C 400 kHz
+IMU SCL,D6 / GPIO43,Output,I2C 400 kHz
+Motor rear-left,D3 / GPIO4,Output,10 kHz PWM to AO3400A gate
+Motor rear-right,D2 / GPIO3,Output,10 kHz PWM to AO3400A gate
+Motor front-right,D5 / GPIO6,Output,10 kHz PWM to AO3400A gate
+Motor front-left,D4 / GPIO5,Output,10 kHz PWM to AO3400A gate
+Battery ADC,D0 / GPIO1,Input,External 100k/100k divider from VBAT; do not exceed ADC input range
+SBUS RX optional,D7 / GPIO44,Input,Optional RC receiver
+SBUS TX optional,D10 / GPIO9,Output,Optional / reserve
+Optical-flow RX optional,D9 / GPIO8,Input,Future V2
+Optical-flow TX optional,D8 / GPIO7,Output,Future V2; conflicts with microSD if enabled
+Camera,internal Sense B2B GPIO10-18/38-40/47-48,I/O,Do not reassign

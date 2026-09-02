@@ -1,0 +1,15 @@
+qty,category,part,specification,preferred_supplier,verified_status_2026-09-02,unit_price_eur,url_or_search_note,critical_check
+1,compute,Seeed XIAO ESP32-S3 Sense,"8MB PSRAM/8MB Flash, OV3660",Botland,"Available, 24h",15.90,https://botland.de/wifi-und-bt-module-esp32/22926-seeed-xiao-esp32-s3-sense-kamera-kit-mit-ov3660-wifi-bluetooth-seeedstudio-113991115.html,Use Sense camera version
+1,sensor,GY-91 MPU9250+BMP280,3.3V I2C,Amazon.de marketplace,Product result verified,11.59,"Search: GY-91 MPU9250 BMP280 10DOF",Confirm MPU9250 not MPU6050 clone
+6,propulsion,8520 brushed motor,"8.5x20mm 3.7V, 1.0mm shaft",Amazon.de/LDARC,Variant availability changes,,"Search exact: 8520 coreless 1mm shaft",1.0mm shaft mandatory
+2,propulsion,76mm propeller set,"2-blade, 1.0mm bore, 2 CW + 2 CCW",Electrapac,Exact geometry listed,,https://www.electrapac.com/product/2-Pcs-76mm-Propeller-For-1020-8520-Coreless-motor,Do not buy 5mm CineWhoop hub
+2,power,EMAX 1S LiHV 650mAh,"3.8V nominal, 120C, PH2.0",Hobbydrone.cz,"In stock >20 when checked",6.80,https://www.hobbydrone.cz/de/tinyhawk-1s-120c-hv-650mah-lipo/,Use LiHV charger for 4.35V charge
+10,electronics,AO3400A,N-MOSFET 30V SOT-23,Reichelt,Exact product result,0.18,"Search: Reichelt AO3400A",Pin orientation critical
+10,electronics,SS14,Schottky 1A 40V,Reichelt/other distributor,Commodity,,,One across each motor
+10,electronics,100R resistor,0603/0805,Reichelt/other distributor,Commodity,,,Series gate resistor
+10,electronics,100k resistor,0603/0805,Reichelt/other distributor,Commodity,,,Gate pulldown and battery divider
+2,electronics,470uF capacitor,"low ESR, >=6.3V",Reichelt/other distributor,Commodity,,,Across VBAT near motor stage
+2,electronics,100uF capacitor,"low ESR, >=6.3V",Reichelt/other distributor,Commodity,,,Near XIAO BAT input
+1,power,PH2.0 pigtail,"20-22AWG",RC supplier,Commodity,,,Check polarity
+1,mechanical,PETG filament,1.75mm,Existing stock,Local,,,Frame
+1,mechanical,TPU 95A filament,1.75mm,Optional,Local,,,Camera cradle

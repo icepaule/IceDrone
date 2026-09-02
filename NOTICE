@@ -1,0 +1,11 @@
+ESP32CAM MicroDrone V1 (IceDrone)
+Copyright 2026 the IceDrone project contributors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+see the LICENSE file for details.
+
+This repository documents a build derived in part from the Open32Drone
+project (https://github.com/npu-ius-lab/open32drone), which is itself
+licensed under the Apache License, Version 2.0. Open32Drone's source is
+not duplicated in this repository; fetch it from its upstream repository
+and preserve its own license and notices.
