@@ -55,4 +55,4 @@ Do not tune PID. Check, in order:
 Return to the last recorded tested toolchain. Flight firmware should be treated like embedded production software: pin the framework and library versions and re-run the full validation plan after any update.
 
 ---
-[← 07 - Safety and Legal](07_SAFETY_AND_LEGAL_DE.md) | [Docs index](README.md) | Next: [Sources →](SOURCES.md)
+[← 07 - Safety and Legal](07_SAFETY_AND_LEGAL_DE.md) | [Docs index](README.md) | Next: [09 - Amazon.de Order List →](09_AMAZON_ORDER_LIST_DE.md)

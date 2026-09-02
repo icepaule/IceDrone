@@ -18,6 +18,7 @@ This is the full documentation set for the project in [github.com/icepaule/IceDr
 | 06 | [First Flight](06_FIRST_FLIGHT.md) | Test environment, hop/hover phases, acceptance criteria |
 | 07 | [Safety and Legal (DE/EU)](07_SAFETY_AND_LEGAL_DE.md) | Workshop safety, EU/DE UAS operating category, Wi-Fi/RF notes |
 | 08 | [Troubleshooting](08_TROUBLESHOOTING.md) | Common faults and their causes |
+| 09 | [Amazon.de Order List (DE)](09_AMAZON_ORDER_LIST_DE.md) | Convenience shopping links for most of the BOM — not pinned/verified, re-check before ordering |
 | — | [Sources](SOURCES.md) | Upstream projects, documentation and purchase-verification links |
 
 ## Suggested reading order
@@ -31,6 +32,7 @@ flowchart LR
     BUILD --> FLIGHT["06 First Flight"]
     MECH -.-> SAFETY["07 Safety & Legal"]
     BUILD -.-> TS["08 Troubleshooting"]
+    BOM -.-> SHOP["09 Amazon.de Order List"]
 ```
 
 Chapters 07 (Safety & Legal) and 08 (Troubleshooting) are reference material you should read before Stage J of chapter 05, and keep at hand during flight testing, rather than a one-time read.
