@@ -1,5 +1,5 @@
-site_name: IceDrone - ESP32CAM MicroDrone V1
-site_description: Documentation, BOM, CAD and bench-test firmware for a XIAO ESP32-S3 Sense based Open32Drone micro-drone.
+site_name: IceDrone - ESP32CAM MicroDrone
+site_description: Documentation, BOM, Airframe V2 CAD and bench-test firmware for a XIAO ESP32-S3 Sense based Open32Drone micro-drone.
 repo_url: https://github.com/icepaule/IceDrone
 repo_name: icepaule/IceDrone
 edit_uri: edit/main/docs/
@@ -28,9 +28,6 @@ theme:
 
 validation:
   links:
-    # docs/*.md intentionally link to source files outside docs_dir
-    # (bom/, cad/, hardware/, firmware/) that GitHub resolves directly
-    # but this site cannot serve; don't fail the build over those.
     not_found: info
     unrecognized_links: info
 
