@@ -1,0 +1,117 @@
+name: Build CAD STL and previews
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cad.yml'
+      - 'cad/airframe_v2/scad/**'
+      - 'cad/propellers/scad/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: icedrone-cad-main
+  cancel-in-progress: true
+
+jobs:
+  build-cad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install OpenSCAD and image tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openscad xvfb imagemagick
+
+      - name: Generate Airframe V2 STL and previews
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p cad/airframe_v2/stl cad/airframe_v2/renders docs/assets
+
+          parts=(
+            frame_v2
+            electronics_deck_v2
+            battery_sled_650_v2
+            xiao_camera_mount_15deg
+            imu_gy91_saddle
+            flight_cage_v2
+            canopy_v2
+            m2_spacers_5mm_set4
+            motor_cup_test_v2
+            prop_guard_corner_v2
+          )
+
+          for part in "${parts[@]}"; do
+            src="cad/airframe_v2/scad/${part}.scad"
+            openscad --export-format binstl -o "cad/airframe_v2/stl/${part}.stl" "$src"
+            xvfb-run -a openscad --autocenter --viewall --imgsize=1000,750 --projection=p --colorscheme=Tomorrow --render \
+              -o "cad/airframe_v2/renders/${part}.png" "$src"
+          done
+
+          xvfb-run -a openscad --autocenter --viewall --imgsize=1200,900 --projection=p --colorscheme=Tomorrow --render \
+            -o cad/airframe_v2/renders/assembly_preview_v2.png \
+            cad/airframe_v2/scad/assembly_preview_v2.scad
+
+          montage \
+            cad/airframe_v2/renders/frame_v2.png \
+            cad/airframe_v2/renders/electronics_deck_v2.png \
+            cad/airframe_v2/renders/battery_sled_650_v2.png \
+            cad/airframe_v2/renders/xiao_camera_mount_15deg.png \
+            cad/airframe_v2/renders/imu_gy91_saddle.png \
+            cad/airframe_v2/renders/flight_cage_v2.png \
+            cad/airframe_v2/renders/canopy_v2.png \
+            cad/airframe_v2/renders/m2_spacers_5mm_set4.png \
+            cad/airframe_v2/renders/motor_cup_test_v2.png \
+            cad/airframe_v2/renders/prop_guard_corner_v2.png \
+            -tile 2x5 -geometry 480x360+8+8 -background white \
+            cad/airframe_v2/renders/airframe_v2_parts.png
+
+          cp cad/airframe_v2/renders/assembly_preview_v2.png docs/assets/airframe_v2_assembly.png
+          cp cad/airframe_v2/renders/airframe_v2_parts.png docs/assets/airframe_v2_parts.png
+
+      - name: Generate propeller STL and previews
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p cad/propellers/stl cad/propellers/renders
+
+          standard="cad/propellers/scad/icedrone_prop_75mm_standard.scad"
+          toroidal="cad/propellers/scad/icedrone_prop_75mm_toroidal.scad"
+          coupon="cad/propellers/scad/shaft_fit_coupon_1mm.scad"
+
+          openscad --export-format binstl -D 'rotation="CW"'  -o cad/propellers/stl/IceDrone_75mm_Standard_CW.stl  "$standard"
+          openscad --export-format binstl -D 'rotation="CCW"' -o cad/propellers/stl/IceDrone_75mm_Standard_CCW.stl "$standard"
+          openscad --export-format binstl -D 'rotation="CW"'  -o cad/propellers/stl/IceDrone_75mm_Toroidal_Quiet_CW.stl  "$toroidal"
+          openscad --export-format binstl -D 'rotation="CCW"' -o cad/propellers/stl/IceDrone_75mm_Toroidal_Quiet_CCW.stl "$toroidal"
+          openscad --export-format binstl -o cad/propellers/stl/IceDrone_1mm_Shaft_Fit_Coupon.stl "$coupon"
+
+          xvfb-run -a openscad --autocenter --viewall --imgsize=1000,750 --projection=p --colorscheme=Tomorrow --render \
+            -D 'rotation="CW"' -o cad/propellers/renders/prop75_standard.png "$standard"
+          xvfb-run -a openscad --autocenter --viewall --imgsize=1000,750 --projection=p --colorscheme=Tomorrow --render \
+            -D 'rotation="CW"' -o cad/propellers/renders/prop75_toroidal.png "$toroidal"
+          xvfb-run -a openscad --autocenter --viewall --imgsize=1000,750 --projection=p --colorscheme=Tomorrow --render \
+            -o cad/propellers/renders/shaft_fit_coupon_1mm.png "$coupon"
+
+      - name: Commit generated CAD assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cad/airframe_v2/stl cad/airframe_v2/renders cad/propellers/stl cad/propellers/renders docs/assets/airframe_v2_assembly.png docs/assets/airframe_v2_parts.png
+          if git diff --cached --quiet; then
+            echo "Generated files are already up to date."
+          else
+            git commit -m "Regenerate CAD STL and preview assets [skip ci]"
+            git push origin HEAD:main
+          fi
