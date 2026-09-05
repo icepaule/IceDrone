@@ -1,57 +1,42 @@
 # IceDrone Documentation
 
-ESP32CAM MicroDrone V1 — a small, 3D-printable brushed quadcopter built around the **Seeed Studio XIAO ESP32-S3 Sense** with onboard **OV3660 camera**, Wi-Fi MJPEG video and an Open32Drone-derived flight stack.
+IceDrone is a small, 3D-printable brushed quadcopter built around the **Seeed Studio XIAO ESP32-S3 Sense**, **GY-91 IMU**, 8520 motors and the current **Airframe V2** mechanical stack.
 
-![Frame v1 render](assets/frame_v1.png)
+![Airframe V2 assembly](assets/airframe_v2_assembly.png)
 
-This is the full documentation set for the project in [github.com/icepaule/IceDrone](https://github.com/icepaule/IceDrone); also published as a website at **[icepaule.github.io/IceDrone](https://icepaule.github.io/IceDrone/)**.
+This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/icepaule/IceDrone) and is also published at **[icepaule.github.io/IceDrone](https://icepaule.github.io/IceDrone/)**.
 
 ## Table of contents
 
 | # | Chapter | Covers |
 |---:|---|---|
-| 01 | [Bill of Materials](01_BOM.md) | Full parts list, sourcing notes, estimated cost |
-| 02 | [Electrical](02_ELECTRICAL.md) | Power architecture, motor driver channel, pin map, battery measurement, grounding |
-| 03 | [Mechanical](03_MECHANICAL.md) | Frame geometry, CAD renders, print settings, tolerances, center of gravity |
-| 04 | [Firmware](04_FIRMWARE.md) | Open32Drone strategy, build settings, video/MAVLink design rules, bench-test firmware |
-| 05 | [Build and Test](05_BUILD_AND_TEST.md) | Detailed step-by-step assembly and bring-up, Stage A through J |
+| 01 | [Bill of Materials](01_BOM.md) | Parts list, sourcing notes, estimated cost |
+| 02 | [Electrical](02_ELECTRICAL.md) | Power architecture, motor driver channels, pin map, grounding |
+| 03 | [Mechanical](03_MECHANICAL.md) | Airframe V2, printable parts, STL/SCAD, Kobra S1 settings, CG |
+| 04 | [Firmware](04_FIRMWARE.md) | Open32Drone strategy, build settings, video/MAVLink design rules |
+| 05 | [Build and Test](05_BUILD_AND_TEST.md) | Step-by-step assembly and bring-up |
 | 06 | [First Flight](06_FIRST_FLIGHT.md) | Test environment, hop/hover phases, acceptance criteria |
-| 07 | [Safety and Legal (DE/EU)](07_SAFETY_AND_LEGAL_DE.md) | Workshop safety, EU/DE UAS operating category, Wi-Fi/RF notes |
-| 08 | [Troubleshooting](08_TROUBLESHOOTING.md) | Common faults and their causes |
-| 09 | [Amazon.de Order List (DE)](09_AMAZON_ORDER_LIST_DE.md) | Convenience shopping links for most of the BOM — not pinned/verified, re-check before ordering |
-| — | [Sources](SOURCES.md) | Upstream projects, documentation and purchase-verification links |
+| 07 | [Safety and Legal (DE/EU)](07_SAFETY_AND_LEGAL_DE.md) | Workshop safety and UAS legal notes |
+| 08 | [Troubleshooting](08_TROUBLESHOOTING.md) | Common faults and causes |
+| 09 | [Amazon.de Order List (DE)](09_AMAZON_ORDER_LIST_DE.md) | Dated marketplace shopping aid |
+| — | [Sources](SOURCES.md) | Upstream projects and references |
 
-## Suggested reading order
-
-```mermaid
-flowchart LR
-    BOM["01 BOM"] --> ELEC["02 Electrical"]
-    ELEC --> MECH["03 Mechanical"]
-    MECH --> FW["04 Firmware"]
-    FW --> BUILD["05 Build & Test"]
-    BUILD --> FLIGHT["06 First Flight"]
-    MECH -.-> SAFETY["07 Safety & Legal"]
-    BUILD -.-> TS["08 Troubleshooting"]
-    BOM -.-> SHOP["09 Amazon.de Order List"]
-```
-
-Chapters 07 (Safety & Legal) and 08 (Troubleshooting) are reference material you should read before Stage J of chapter 05, and keep at hand during flight testing, rather than a one-time read.
-
-## Status
+## Current project status
 
 | Area | Status |
 |---|---|
-| Bill of materials | Complete, verified 2026-09-02 |
-| Electrical (pin map, netlist, wiring diagram) | Complete |
-| Mechanical CAD (frame, cradles, prop guard) | Parametric OpenSCAD + STL + renders in [`cad/`](../cad/) |
-| Bench-test firmware | Complete, in [`firmware/bench_test/`](../firmware/bench_test/) |
-| Flight-critical firmware | Not included — tracks upstream Open32Drone, see [04 - Firmware](04_FIRMWARE.md) |
-| Build/fetch helper scripts | Not yet included |
+| Bill of materials | Available; verify actual delivered variants |
+| Electrical | Pin map, netlist and wiring documented |
+| Mechanical | **Airframe V2 current**; parametric OpenSCAD + STL + previews in `cad/airframe_v2/` |
+| Propeller CAD | Standard and experimental toroidal models in `cad/propellers/` |
+| Bench-test firmware | Available in `firmware/bench_test/` |
+| Flight-critical firmware | Tracks upstream Open32Drone; see [04 - Firmware](04_FIRMWARE.md) |
 
-## Related top-level files
+## Related files
 
-- [`../README.md`](../README.md) — project overview and quick start
-- [`../bom/bom.csv`](../bom/bom.csv), [`../hardware/`](../hardware/) — machine-readable BOM, pin map and netlist
-- [`../cad/`](../cad/) — OpenSCAD sources, STL exports, renders
+- [`../README.md`](../README.md) — project overview with visual previews
+- [`../cad/airframe_v2/`](../cad/airframe_v2/) — current airframe SCAD/STL/renders
+- [`../cad/propellers/`](../cad/propellers/) — replacement/test propeller CAD
+- [`../bom/bom.csv`](../bom/bom.csv), [`../hardware/`](../hardware/) — machine-readable BOM and wiring data
 - [`../firmware/bench_test/`](../firmware/bench_test/) — pre-flight bench firmware
-- [`../LICENSE`](../LICENSE), [`../NOTICE`](../NOTICE) — Apache-2.0 licensing
+- [`../LICENSE`](../LICENSE), [`../NOTICE`](../NOTICE) — licensing
