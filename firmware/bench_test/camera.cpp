@@ -27,13 +27,13 @@ bool cameraInit() {
   c.pin_d4=Y6_GPIO_NUM; c.pin_d5=Y7_GPIO_NUM; c.pin_d6=Y8_GPIO_NUM; c.pin_d7=Y9_GPIO_NUM;
   c.pin_xclk=XCLK_GPIO_NUM; c.pin_pclk=PCLK_GPIO_NUM; c.pin_vsync=VSYNC_GPIO_NUM; c.pin_href=HREF_GPIO_NUM;
   c.pin_sccb_sda=SIOD_GPIO_NUM; c.pin_sccb_scl=SIOC_GPIO_NUM; c.pin_pwdn=PWDN_GPIO_NUM; c.pin_reset=RESET_GPIO_NUM;
-  c.xclk_freq_hz=20000000;
+  c.xclk_freq_hz=10000000; // 20 MHz let esp_camera_init() succeed (SCCB probe OK) but every fb_get() returned NULL on this unit
   c.pixel_format=PIXFORMAT_JPEG;
   c.frame_size=FRAMESIZE_QVGA;
   c.jpeg_quality=18;
   c.fb_count=2;
   c.fb_location=CAMERA_FB_IN_PSRAM;
-  c.grab_mode=CAMERA_GRAB_LATEST;
+  c.grab_mode=CAMERA_GRAB_WHEN_EMPTY;
   return esp_camera_init(&c)==ESP_OK;
 }
 

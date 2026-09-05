@@ -2,3 +2,4 @@ site/
 __pycache__/
 *.pyc
 .pio/
+firmware/camera_wifi_test/secrets.h
