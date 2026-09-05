@@ -1,4 +1,4 @@
-ESP32CAM MicroDrone V1 (IceDrone)
+IceDrone - ESP32CAM MicroDrone
 Copyright 2026 the IceDrone project contributors
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -9,3 +9,8 @@ project (https://github.com/npu-ius-lab/open32drone), which is itself
 licensed under the Apache License, Version 2.0. Open32Drone's source is
 not duplicated in this repository; fetch it from its upstream repository
 and preserve its own license and notices.
+
+Experimental toroidal propeller CAD is provided as project research CAD.
+Third-party patent or other intellectual-property rights may apply to
+specific toroidal-propeller implementations; the Apache-2.0 license for
+repository code does not grant rights held by third parties.
