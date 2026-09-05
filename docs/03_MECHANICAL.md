@@ -2,96 +2,65 @@
 
 # 03 - Mechanical
 
-CAD sources: [`cad/frame_v1.scad`](../cad/frame_v1.scad), [`cad/camera_cradle_15deg.scad`](../cad/camera_cradle_15deg.scad), [`cad/battery_cradle_650.scad`](../cad/battery_cradle_650.scad), [`cad/prop_guard_corner.scad`](../cad/prop_guard_corner.scad). STL exports are in [`cad/stl/`](../cad/stl/), ready to slice.
+The **Airframe V2** in [`cad/airframe_v2/`](../cad/airframe_v2/) is the current mechanical design. The previous V1 frame and cradle files have been removed from `main`; they remain recoverable through Git history.
+
+![Airframe V2 assembly](assets/airframe_v2_assembly.png)
 
 ## Frame geometry
 
-The V1 frame is a 123 mm diagonal Quad-X frame. Motor centers are at ±43.49 mm X/Y. Adjacent motor spacing is ~87 mm. A 76 mm prop has 38 mm radius, leaving about 11 mm theoretical gap between neighboring prop discs.
+- 123 mm diagonal Quad-X motor-center wheelbase
+- motor centers at ±43.49 mm X/Y
+- adjacent motor spacing about 87 mm
+- 8520 brushed motors, nominal 8.5 mm body diameter
+- 75/76 mm propellers
+- shared 30 × 30 mm M2 stack
+- battery mounted underneath for longitudinal CG adjustment
 
-![Frame v1 render](assets/frame_v1.png)
+## Printable stack
 
-```mermaid
-flowchart TB
-    subgraph Frame["Quad-X frame - 123 mm diagonal, ~87 mm motor spacing"]
-        FL["Front-Left motor<br/>GPIO5"]
-        FR["Front-Right motor<br/>GPIO6"]
-        RL["Rear-Left motor<br/>GPIO4"]
-        RR["Rear-Right motor<br/>GPIO3"]
-        C["Center plate<br/>XIAO ESP32-S3 Sense + IMU"]
-    end
-    FL --- C
-    FR --- C
-    RL --- C
-    RR --- C
-```
+1. `battery_sled_650_v2.stl`
+2. `frame_v2.stl`
+3. four 5 mm M2 spacers
+4. `electronics_deck_v2.stl`
+5. `flight_cage_v2.stl` **or** `canopy_v2.stl`
 
-### Frame features
+The XIAO camera mount faces forward. Keep the GY-91 close to the geometric center and aligned with the frame axes.
 
-- 8.65 mm motor cup ID for nominal 8.5 mm motors
-- 12.8 mm cup OD
-- 10 mm cup height
-- 7 mm arms, 2.5 mm thick
-- 42 mm central plate
-- 30×30 mm M2 mounting pattern
-- two battery-strap slots
-- motor cup relief slots for motor wiring and slight compliance
+![Airframe V2 printable parts](assets/airframe_v2_parts.png)
 
-## Camera cradle
+## Part files
 
-An open cradle for the XIAO Sense stack, with a nominal 15° camera attitude, intentionally open for cooling: the XIAO Sense can become hot during continuous Wi-Fi/camera load.
+All current OpenSCAD sources and STL exports are in [`cad/airframe_v2/`](../cad/airframe_v2/). Each printable part has a preview image in `cad/airframe_v2/renders/` and is documented in the Airframe V2 README.
 
-![Camera cradle render](assets/camera_cradle_15deg.png)
+The shared parametric geometry is in `cad/airframe_v2/scad/icedrone_v2_lib.scad`; the small wrapper SCAD files render one selected part each.
 
-Recommended material: TPU 95A. PETG works for initial fitting but transmits more vibration.
+## 8520 motor-cup calibration
 
-## Battery cradle
+Print `motor_cup_test_v2.stl` before the full frame. It contains 8.55 / 8.60 / 8.65 / 8.70 / 8.75 mm cup IDs. Use the smallest size that accepts the actual motor with a firm press fit without deforming the motor can or cracking the cup. Then adjust `motor_id` in `icedrone_v2_lib.scad` if required.
 
-Targets batteries up to roughly 62×20×8 mm. Battery dimensions vary substantially even at the same capacity. Measure your actual pack before final printing and adjust the cradle dimensions if needed.
+## Battery and center of gravity
 
-![Battery cradle render](assets/battery_cradle_650.png)
-
-`battery_length`, `battery_width` and `battery_height` are exposed as the first three variables in `cad/battery_cradle_650.scad` — edit them to match your actual pack and re-render/re-slice.
-
-## Optional prop guard
-
-A corner guard is optional and is **not** part of the weight target. Print four if you are doing low-energy indoor testing. Remove them for the best thrust-to-weight ratio.
-
-![Prop guard render](assets/prop_guard_corner.png)
+The default sled targets a 1S pack around 550–650 mAh and an envelope up to roughly 62 × 20 × 8 mm. Measure the delivered battery before the final print and slide it longitudinally until the assembled aircraft balances at the geometric center.
 
 ## Kobra S1 print settings
 
-### Frame - PETG
+| Part | Material | Layer | Walls | Infill | Support |
+|---|---|---:|---:|---:|---|
+| Main frame | PETG | 0.16–0.20 mm | 4 | 100% | none |
+| Electronics deck | PETG | 0.16–0.20 mm | 3–4 | 60–100% | none |
+| Battery sled | PETG/TPU | 0.16–0.20 mm | 3 | 50–100% | none |
+| XIAO mount | PETG/TPU 95A | 0.16–0.20 mm | 3 | 50–100% / 25–40% | normally none |
+| IMU saddle | TPU 95A preferred | 0.20 mm | 3 | 20–35% | none |
+| Flight cage | PETG | 0.16 mm | 3 | 100% | tree/build-plate support for top bridges only |
+| Canopy | PETG | 0.16–0.20 mm | 3 | 60–100% | print roof-down; support as required |
 
-- nozzle: 0.4 mm
-- layer: 0.16-0.20 mm
-- walls: 4
-- top/bottom: 4
-- infill: 100% (thin geometry; actual mass penalty is small)
-- supports: none
-- orientation: flat on central plate
-- brim: 3-5 mm if motor cups show edge lift
+## Propeller CAD
 
-Start with your proven PETG profile rather than over-optimizing speed. Arm layer adhesion matters more than cosmetic surface quality.
+Replacement/test propeller models are in [`cad/propellers/`](../cad/propellers/): standard 75 mm two-blade CW/CCW, experimental toroidal/low-noise CW/CCW, and a 1 mm shaft-fit coupon. The purchased molded propellers remain the preferred starting point.
 
-### Camera cradle - TPU 95A
+## Safety
 
-- layer: 0.20 mm
-- walls: 3
-- infill: 20-35%
-- print slowly enough to prevent under-extrusion
-- no support if your slicer bridges the shallow wedge acceptably
-
-### Prototype in PLA
-
-PLA is fine for a geometry/check-fit prototype and usually gives the cleanest motor-cup dimensions. The final flight frame is better in PETG because it tolerates impacts without brittle fracture.
-
-## Tolerance checks
-
-Print a single 12.8 mm OD / 8.65 mm ID motor cup test before printing the whole frame if your printer has not been dimensionally calibrated. The motor should press in firmly without crushing the can. If too tight, increase the motor cup ID in 0.05 mm steps.
-
-## Center of gravity
-
-Place the battery below the center plate and slide it longitudinally until CG is under the geometric center. The camera should face toward the front between the two front motors. The IMU should be as close to the center as practical and mounted flat relative to the frame axes.
+Perform electrical, motor-order, motor-direction, IMU-orientation and failsafe tests **without propellers installed**. Fit propellers only after all prop-off checks pass. Use eye protection and restrain the aircraft for initial powered propeller tests.
 
 ---
 [← 02 - Electrical](02_ELECTRICAL.md) | [Docs index](README.md) | Next: [04 - Firmware →](04_FIRMWARE.md)
