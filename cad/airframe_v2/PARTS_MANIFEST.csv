@@ -1,0 +1,11 @@
+file,quantity,material,recommended,orientation,support,notes
+frame_v2.stl,1,PETG,yes,flat bottom,no,"Main 123 mm Quad-X airframe; print motor cup coupon first"
+battery_sled_650_v2.stl,1,PETG or TPU,yes,flat floor,no,"Adjustable +/- several mm using 30x30 M2 longitudinal slots"
+electronics_deck_v2.stl,1,PETG,yes,flat,no,"Universal 20-30 mm carrier/perfboard tie slots"
+m2_spacers_5mm_set4.stl,1 set,PETG,yes,flat,no,"Contains 4 separate 5 mm spacers"
+imu_gy91_saddle.stl,1,TPU 95A,yes,flat,no,"Measure actual GY-91; parametric dimensions in library"
+xiao_camera_mount_15deg.stl,1,PETG or TPU,yes,base flat,no,"Forward camera mount; USB-C up; approximately 15 degree downward camera angle"
+flight_cage_v2.stl,1,PETG,yes,feet on bed,build-plate/tree for top rails,"Recommended lightweight airborne protection"
+canopy_v2.stl,1,PETG,no,roof on bed,auto if needed,"More protection but heavier than flight cage"
+prop_guard_corner_v2.stl,4,PETG,no,flat,usually no,"Indoor/low-energy testing; remove for best thrust-to-weight"
+motor_cup_test_v2.stl,1,PETG,test only,flat,no,"Five IDs: 8.55/8.60/8.65/8.70/8.75 mm"
