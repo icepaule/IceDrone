@@ -29,8 +29,9 @@ This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/
 | Electrical | Pin map, netlist and wiring documented |
 | Mechanical | **Airframe V2 current**; parametric OpenSCAD + STL + previews in `cad/airframe_v2/` |
 | Propeller CAD | Standard and experimental toroidal models in `cad/propellers/` |
-| Bench-test firmware | Available in `firmware/bench_test/` |
-| Flight-critical firmware | Tracks upstream Open32Drone; see [04 - Firmware](04_FIRMWARE.md) |
+| Bench-test firmware | Available in `firmware/bench_test/`; **verified on real XIAO ESP32-S3 Sense hardware** (camera/IMU/motor-pulse smoke test, USB power only, no propellers) |
+| Camera Wi-Fi diagnostic | `firmware/camera_wifi_test/` streams MJPEG over the existing Wi-Fi LAN for pre-integration camera checks; verified working on real hardware |
+| Flight-critical firmware | Tracks upstream Open32Drone, vendored as the `vendor/open32drone` submodule with a small V1-config patch; **USB-only smoke test verified** (camera, Wi-Fi AP, MAVLink transport). See [04 - Firmware](04_FIRMWARE.md) and `firmware/open32drone/README.md`. Motor mapping/rotation, IMU calibration and battery calibration ([05 - Build and Test](05_BUILD_AND_TEST.md), Stages E-H) still need the motor/IMU hardware installed |
 
 ## Related files
 
@@ -39,4 +40,6 @@ This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/
 - [`../cad/propellers/`](../cad/propellers/) — replacement/test propeller CAD
 - [`../bom/bom.csv`](../bom/bom.csv), [`../hardware/`](../hardware/) — machine-readable BOM and wiring data
 - [`../firmware/bench_test/`](../firmware/bench_test/) — pre-flight bench firmware
+- [`../firmware/camera_wifi_test/`](../firmware/camera_wifi_test/) — diagnostic-only Wi-Fi MJPEG camera stream (not flight firmware)
+- [`../firmware/open32drone/`](../firmware/open32drone/) — V1 config patch and build/flash instructions for the vendored Open32Drone submodule
 - [`../LICENSE`](../LICENSE), [`../NOTICE`](../NOTICE) — licensing

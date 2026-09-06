@@ -86,6 +86,10 @@ A MOSFET fitted with wrong pin orientation can cause a motor to run immediately.
    - the camera ribbon and antenna remain physically secure while doing this.
 4. Disconnect USB, connect the battery, and repeat step 3 on battery power.
 
+> Verified 2026-09-06 on a physical XIAO ESP32-S3 Sense over USB power (battery/motors/IMU not yet installed): step 3 passed after two firmware fixes documented in `firmware/bench_test/`. See [08 - Troubleshooting](08_TROUBLESHOOTING.md#camera-initializes-but-every-captured-frame-is-null) if `c` returns a frame count once and then NULL/resets.
+
+For an optional pre-Open32Drone check, `firmware/camera_wifi_test/` streams the camera live over your existing Wi-Fi LAN (STA mode, not the drone's own AP) so you can view it from a browser before wiring the flight firmware's video path. It is diagnostic-only and is never flashed for actual flight.
+
 ## Stage E - IMU orientation
 
 The IMU must be mounted rigidly and flat before this stage.

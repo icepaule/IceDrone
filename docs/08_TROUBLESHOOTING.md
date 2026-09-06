@@ -50,6 +50,17 @@ Do not tune PID. Check, in order:
 - use the supplied U.FL antenna with clear orientation;
 - for a later V2, consider independent RC/SBUS so flight control is not dependent on the video WLAN link.
 
+## Camera initializes but every captured frame is NULL
+
+`esp_camera_init()` returns `ESP_OK` (the sensor answers on SCCB/I2C), but `esp_camera_fb_get()` reliably returns `NULL` afterward.
+
+Observed on a real XIAO Sense unit at the default 20 MHz XCLK. Two independent fixes, both worth trying:
+
+1. Lower `xclk_freq_hz` to 10 MHz and discard one warm-up frame right after init (see `firmware/bench_test/camera.cpp` and `firmware/camera_wifi_test/main.cpp`) — this alone made capture reliable on the affected unit.
+2. If frames are still intermittently `NULL` after the XCLK fix, suspect a marginal FPC ribbon-cable seat on the Sense camera module rather than a firmware issue. Re-seating or replacing the camera module resolved a case where roughly 1 in 10–20 frames still failed even at 10 MHz.
+
+`CAMERA_GRAB_WHEN_EMPTY` instead of `CAMERA_GRAB_LATEST` also avoids returning a buffer that a slow consumer is still holding, but did not by itself fix the NULL-frame issue described here.
+
 ## ESP32 build breaks after library/core update
 
 Return to the last recorded tested toolchain. Flight firmware should be treated like embedded production software: pin the framework and library versions and re-run the full validation plan after any update.
