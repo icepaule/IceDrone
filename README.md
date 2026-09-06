@@ -12,6 +12,32 @@ A small, 3D-printable brushed quadcopter built around the **Seeed Studio XIAO ES
 
 The current airframe is a modular **123 mm Quad-X** design with dedicated mounts for the 1S battery, electronics deck, XIAO ESP32-S3 Sense camera board, GY-91 IMU and a lightweight flight cage or closed canopy.
 
+### How the STL parts fit together
+
+The following view combines the actual printable Airframe V2 geometry with simplified mockups of the battery, four 8520 motors, electronics carrier, GY-91 and XIAO/camera. The mock electronics are shown only to explain placement; they are **not additional STL files**.
+
+![IceDrone Airframe V2 fully populated labeled assembly](cad/airframe_v2/renders/complete_assembled_labeled.png)
+
+The exploded view makes the vertical stack and the purpose of each STL clearer:
+
+![IceDrone Airframe V2 exploded labeled assembly](cad/airframe_v2/renders/exploded_labeled.png)
+
+| No. | STL | Purpose / installed component |
+|---:|---|---|
+| **1** | [`frame_v2.stl`](cad/airframe_v2/stl/frame_v2.stl) | Main load-bearing Quad-X frame. The four **8520 motors press into the motor cups** at the arm ends. |
+| **2** | [`battery_sled_650_v2.stl`](cad/airframe_v2/stl/battery_sled_650_v2.stl) | Battery cradle **below the frame**; the 1S pack is moved longitudinally for CG adjustment. |
+| **3** | [`electronics_deck_v2.stl`](cad/airframe_v2/stl/electronics_deck_v2.stl) | Upper carrier for the **MOSFET motor-driver/perfboard or custom PCB**. |
+| **4** | [`imu_gy91_saddle.stl`](cad/airframe_v2/stl/imu_gy91_saddle.stl) | Mount for the **GY-91 IMU**, kept close to the aircraft center. |
+| **5** | [`xiao_camera_mount_15deg.stl`](cad/airframe_v2/stl/xiao_camera_mount_15deg.stl) | Forward mount for the **XIAO ESP32-S3 Sense and camera**, approximately 15° nose-down. |
+| **6** | [`flight_cage_v2.stl`](cad/airframe_v2/stl/flight_cage_v2.stl) | Lightweight protection around the electronics/camera stack; preferred for the flight build. |
+| **7** | [`m2_spacers_5mm_set4.stl`](cad/airframe_v2/stl/m2_spacers_5mm_set4.stl) | Four 5 mm spacers between the main frame and electronics deck. |
+
+Three STL files are **not additional mandatory layers** in the pictured stack:
+
+- [`canopy_v2.stl`](cad/airframe_v2/stl/canopy_v2.stl) is an **alternative to** `flight_cage_v2.stl`, not something to install at the same time.
+- [`prop_guard_corner_v2.stl`](cad/airframe_v2/stl/prop_guard_corner_v2.stl) is optional; print four for low-energy indoor testing and remove them for minimum flight mass.
+- [`motor_cup_test_v2.stl`](cad/airframe_v2/stl/motor_cup_test_v2.stl) is a **calibration coupon only** and is never installed on the finished aircraft.
+
 ![Airframe V2 printable parts](cad/airframe_v2/renders/airframe_v2_parts.png)
 
 Detailed part descriptions, OpenSCAD sources, STL downloads, Kobra S1 print settings and validation notes are in **[`cad/airframe_v2/`](cad/airframe_v2/)**.
@@ -62,7 +88,8 @@ The repository includes CW/CCW STL exports and a 1 mm shaft-fit coupon. The toro
 │   ├── airframe_v2/
 │   │   ├── scad/
 │   │   ├── stl/
-│   │   └── renders/
+│   │   ├── renders/
+│   │   └── tools/
 │   └── propellers/
 │       ├── scad/
 │       ├── stl/
