@@ -27,7 +27,7 @@ bool cameraInit() {
   c.pin_d4=Y6_GPIO_NUM; c.pin_d5=Y7_GPIO_NUM; c.pin_d6=Y8_GPIO_NUM; c.pin_d7=Y9_GPIO_NUM;
   c.pin_xclk=XCLK_GPIO_NUM; c.pin_pclk=PCLK_GPIO_NUM; c.pin_vsync=VSYNC_GPIO_NUM; c.pin_href=HREF_GPIO_NUM;
   c.pin_sccb_sda=SIOD_GPIO_NUM; c.pin_sccb_scl=SIOC_GPIO_NUM; c.pin_pwdn=PWDN_GPIO_NUM; c.pin_reset=RESET_GPIO_NUM;
-  c.xclk_freq_hz=10000000; // 20 MHz let esp_camera_init() succeed (SCCB probe OK) but every fb_get() returned NULL on this unit
+  c.xclk_freq_hz=10000000; // Kept at 10 MHz as safety margin: original camera module had a marginal FPC ribbon seat causing fb_get() to return NULL at 20 MHz; replacing the module fixed it, but 10 MHz gives more timing headroom against connector wear.
   c.pixel_format=PIXFORMAT_JPEG;
   c.frame_size=FRAMESIZE_QVGA;
   c.jpeg_quality=18;
