@@ -1,0 +1,3 @@
+[submodule "vendor/open32drone"]
+	path = vendor/open32drone
+	url = https://github.com/npu-ius-lab/open32drone

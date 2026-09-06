@@ -1,0 +1,32 @@
+diff --git a/software/firmware/camera.ino b/software/firmware/camera.ino
+index dacb0de..ced8e19 100644
+--- a/software/firmware/camera.ino
++++ b/software/firmware/camera.ino
+@@ -26,11 +26,11 @@
+ 
+ constexpr uint32_t CAMERA_XCLK_HZ = 20000000;
+ constexpr framesize_t CAMERA_FRAME_SIZE = FRAMESIZE_QVGA;
+-constexpr int CAMERA_JPEG_QUALITY = 10;
++constexpr int CAMERA_JPEG_QUALITY = 18; // IceDrone V1 policy (docs/04_FIRMWARE.md): MJPEG quality starting point 18
+ constexpr int CAMERA_FRAME_BUFFERS = 2;
+ // Keep video below the point where the softAP TCP stream can starve small,
+-// safety-critical MAVLink UDP packets. Quality remains 10; only frame cadence
+-// is reduced.
++// safety-critical MAVLink UDP packets. Only frame cadence is reduced to
++// compensate for IceDrone's higher CAMERA_JPEG_QUALITY setting above.
+ constexpr int CAMERA_STREAM_FPS = 10;
+ 
+ // Motors use Arduino LEDC channels 1..4 on timer 0. The camera deliberately
+diff --git a/software/firmware/firmware.ino b/software/firmware/firmware.ino
+index fd62365..21fd4e0 100644
+--- a/software/firmware/firmware.ino
++++ b/software/firmware/firmware.ino
+@@ -11,7 +11,7 @@
+ #define WIFI_ENABLED 1
+ const char OPEN32DRONE_BUILD_ID[] = "minimal";
+ const uint32_t OPEN32DRONE_FLIGHT_SW_VERSION = (0U << 24) | (1U << 16) | (0U << 8) | 255U;
+-#define OPTICAL_FLOW_ENABLED 1
++#define OPTICAL_FLOW_ENABLED 0 // IceDrone V1 policy (docs/04_FIRMWARE.md): optical flow disabled for V1
+ #define FLOW_SENSOR_MIN_HEIGHT 0.015f // near-ground packets: launch readiness and ground-bias learning
+ Vector position; // estimated position in world frame, m
+ // Horizontal velocity is body FLU; vertical velocity is world-up. Use

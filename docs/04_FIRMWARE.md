@@ -28,6 +28,8 @@ flowchart LR
 
 Fetch Open32Drone from its upstream repository (see `docs/SOURCES.md`) and record the exact revision used in your build log, e.g. `git -C vendor/open32drone rev-parse HEAD`.
 
+This repo vendors it as the `vendor/open32drone` git submodule and keeps the V1 config deltas below as a patch rather than edits to the submodule itself — see [`firmware/open32drone/README.md`](../firmware/open32drone/README.md) for the exact build/flash commands and the 2026-09-06 USB-only smoke-test log (camera, Wi-Fi AP, MAVLink transport confirmed working without IMU/motors/battery wired).
+
 ## Arduino build settings
 
 For the current upstream documentation:
