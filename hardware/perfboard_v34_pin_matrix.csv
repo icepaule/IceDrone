@@ -1,0 +1,28 @@
+Section,Signal,Perfboard pad,Connected to,XIAO label,ESP32 GPIO,Notes
+Battery,BT2.0 +,A12,VBAT rail,-,-,Raw LiHV 1S
+Battery,BT2.0 -,J12,GND rail,-,-,Common GND
+XIAO,5V input,H12,D5 cathode,5V,-,From regulated 1S->5V boost via D5; not raw LiHV
+XIAO,GND,I13,J13/GND,GND,-,Common ground
+XIAO,3V3 output,G13,Sensors,3V3,-,Feeds GY-91 and VL6180X VIN
+M1,PWM,B9,F3/R1,D3,GPIO4,Rear-left
+M2,PWM,C9,F7/R2,D7,GPIO44,Rear-right; changed from GPIO3
+M3,PWM,D9,F15/R3,D5,GPIO6,Front-right
+M4,PWM,E9,F20/R4,D4,GPIO5,Front-left
+Battery ADC,ADC midpoint,F9,C17,D0,GPIO1,100k/100k divider; 100nF filter
+I2C,SDA,G9,H23 + H24,D1,GPIO2,Custom I2C pin
+I2C,SCL,H9,I23 + I24,D6,GPIO43,Custom I2C pin
+Gimbal,PWM,I9,I18,test pad,GPIO42,Disables PDM microphone CLK
+GY-91,3V3,G23,G13,-,-,Sensor power
+GY-91,GND,J23,GND rail,-,-,
+GY-91,SDA,H23,G9,D1,GPIO2,
+GY-91,SCL,I23,H9,D6,GPIO43,
+VL6180X,VIN actual pin 1,F24,G13,-,-,3.3V supply; breakout accepts 3-5V
+VL6180X,2V8 actual pin 2,NC,-,-,-,2.8V regulator output; leave open
+VL6180X,GND actual pin 3,J24,GND rail,-,-,
+VL6180X,GPIO actual pin 4,NC,-,-,-,Data-ready output; unused
+VL6180X,SHDN actual pin 5,G24,NC,-,-,Breakout pulls high; optional future control
+VL6180X,SCL actual pin 6,I24,H9,D6,GPIO43,
+VL6180X,SDA actual pin 7,H24,G9,D1,GPIO2,
+FH-1502,+,H18,VBAT rail,-,-,Raw 1S supply
+FH-1502,GND,J18,GND rail,-,-,
+FH-1502,PWM,I18,I9,test pad,GPIO42,
