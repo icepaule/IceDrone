@@ -2,80 +2,93 @@
 
 # 01 - Bill of Materials (BOM)
 
-**Verification date:** 2026-09-02. Availability and prices are volatile; re-check before ordering.
+**Current electrical revision:** IceDrone V3.4  
+**Updated:** 2026-09-16
 
-Machine-readable version: [`bom/bom.csv`](../bom/bom.csv), reproduced in full below.
+Machine-readable version: [`bom/bom.csv`](../bom/bom.csv).
 
-## Full parts list
+> The older V1 sourcing list contained SS14 motor flyback diodes, 6.3 V bulk capacitors and a direct XIAO battery-input concept. Those values are **obsolete for V3.4**. Use the V3.4 requirements below.
 
-| Qty | Category | Part | Specification | Preferred supplier | Verified status (2026-09-02) | Unit price (€) | URL / search note | Critical check |
-|---:|---|---|---|---|---|---:|---|---|
-| 1 | compute | Seeed XIAO ESP32-S3 Sense | 8MB PSRAM/8MB Flash, OV3660 | Botland | Available, 24h | 15.90 | [botland.de](https://botland.de/wifi-und-bt-module-esp32/22926-seeed-xiao-esp32-s3-sense-kamera-kit-mit-ov3660-wifi-bluetooth-seeedstudio-113991115.html) | Use Sense camera version |
-| 1 | sensor | GY-91 MPU9250+BMP280 | 3.3V I2C | Amazon.de marketplace | Product result verified | 11.59 | Search: GY-91 MPU9250 BMP280 10DOF | Confirm MPU9250 not MPU6050 clone |
-| 6 | propulsion | 8520 brushed motor | 8.5x20mm 3.7V, 1.0mm shaft | Amazon.de/LDARC | Variant availability changes | – | Search exact: 8520 coreless 1mm shaft | 1.0mm shaft mandatory |
-| 2 | propulsion | 76mm propeller set | 2-blade, 1.0mm bore, 2 CW + 2 CCW | Electrapac | Exact geometry listed | – | [electrapac.com](https://www.electrapac.com/product/2-Pcs-76mm-Propeller-For-1020-8520-Coreless-motor) | Do not buy 5mm CineWhoop hub |
-| 2 | power | EMAX 1S LiHV 650mAh | 3.8V nominal, 120C, PH2.0 | Hobbydrone.cz | In stock >20 when checked | 6.80 | [hobbydrone.cz](https://www.hobbydrone.cz/de/tinyhawk-1s-120c-hv-650mah-lipo/) | Use LiHV charger for 4.35V charge |
-| 10 | electronics | AO3400A | N-MOSFET 30V SOT-23 | Reichelt | Exact product result | 0.18 | Search: Reichelt AO3400A | Pin orientation critical |
-| 10 | electronics | SS14 | Schottky 1A 40V | Reichelt/other distributor | Commodity | – | – | One across each motor |
-| 10 | electronics | 100R resistor | 0603/0805 | Reichelt/other distributor | Commodity | – | – | Series gate resistor |
-| 10 | electronics | 100k resistor | 0603/0805 | Reichelt/other distributor | Commodity | – | – | Gate pulldown and battery divider |
-| 2 | electronics | 470uF capacitor | low ESR, >=6.3V | Reichelt/other distributor | Commodity | – | – | Across VBAT near motor stage |
-| 2 | electronics | 100uF capacitor | low ESR, >=6.3V | Reichelt/other distributor | Commodity | – | – | Near XIAO BAT input |
-| 1 | power | PH2.0 pigtail | 20-22AWG | RC supplier | Commodity | – | – | Check polarity |
-| 1 | mechanical | PETG filament | 1.75mm | Existing stock | Local | – | – | Frame |
-| 1 | mechanical | TPU 95A filament | 1.75mm | Optional | Local | – | – | Camera cradle |
+## Core V3.4 hardware
 
-## Recommended sourcing strategy
+| Qty | Category | Part | V3.4 requirement | Critical check |
+|---:|---|---|---|---|
+| 1 | compute | Seeed XIAO ESP32-S3 Sense | Sense camera version | external 5 V supply path; not raw LiHV |
+| 1 | sensor | GY-91 MPU9250+BMP280 | 3.3 V I2C | verify actual IMU variant |
+| 1 | sensor | VL6180X breakout | photographed 7-pin module | pin order VIN,2V8,GND,GPIO,SHDN,SCL,SDA |
+| 1 | actuator | FH-1502 gimbal/servo | PWM | GPIO42; PDM microphone unavailable |
+| 4 + spares | propulsion | 8520 brushed motor | 8.5×20 mm, 3.7 V, 1.0 mm shaft | shaft size mandatory |
+| 1 set + spares | propulsion | 75–76 mm propellers | 1.0 mm bore, matched CW/CCW | verify bore and rotation |
+| 1–2 | power | 1S LiHV battery | 3.8 V nominal, max 4.35 V | LiHV-capable charger |
+| 1 | power | 1S→5 V boost | ≥0.7 A continuous, ≥1 A transient recommended | XIAO supply path |
+| 4 | electronics | AO3400A | N-MOSFET, SOT-23 | pin orientation critical |
+| 4 | electronics | **SS34-class Schottky** | **≥3 A** | flyback; cathode/band to VBAT |
+| 1 | electronics | D5 Schottky | ≥1 A, e.g. SS14/1N5819W class | cathode to XIAO 5V |
+| 4 | electronics | 100 Ω | gate series resistor | one per MOSFET |
+| 6 | electronics | 100 kΩ | 4 pulldowns + 2 ADC divider | correct values |
+| 1 | electronics | **470 µF / 10 V low-ESR** | C1 | polarity |
+| 1 | electronics | **100 µF / 10 V low-ESR** | C2 | polarity |
+| 5 | electronics | 100 nF ceramic | C3 + 4 motor-terminal caps | motor caps directly at motor |
+| 1 | power | BT2.0 pigtail | 20–22 AWG preferred | polarity |
+| 4 | power | JST-XH/equivalent 2-pin motor connector | current-capable | no Dupont for motor current |
+| 1 | prototype | 70×30 mm perfboard | 2.54 mm pitch | V3.4 coordinate system |
 
-I could not honestly verify a single German/EU supplier that currently carries **all** of the following with the exact required variants (especially 8520/1.0-mm motors and 76-mm/1.0-mm CW/CCW props). The lowest-risk purchase is therefore split into **core electronics** and **micro-drone propulsion**. Amazon.de can consolidate several generic components into one checkout, but exact marketplace sellers and shaft/connector variants change frequently.
+## AO3400A
 
-### Preferred, quality-first purchase
+The V3.4 motor stage uses AO3400A because it has low RDS(on) specified at low gate voltage. For the SOT-23 package use the manufacturer's pinout:
 
-| Qty | Part | Required specification | Verified source/status | Indicative price |
-|---:|---|---|---|---:|
-| 1 | Seeed XIAO ESP32-S3 Sense | 8 MB PSRAM, 8 MB flash, OV3660 current production | Botland, index SEE-22926, available / 24h when checked | €15.90 |
-| 1 | GY-91 | MPU9250 + BMP280, 3.3 V I2C compatible | Amazon.de marketplace result verified by product search | ~€11.59 |
-| 6 | 8520 brushed coreless motors | 8.5×20 mm, **1.0 mm shaft**, 3.7 V; buy 2 spares | Amazon.de marketplace / alternate LDARC 8520 listing; verify shaft before checkout | ~€15-25 total |
-| 2 sets | 76 mm 2-blade props | **1.0 mm hole**, 2×CW + 2×CCW per set | Electrapac exact 76 mm/1.0 mm listing; buy spare set | varies |
-| 2 | 1S LiHV/LiPo | 550-650 mAh, PH2.0, ≥30C; EMAX 650 mAh 120C acceptable | Hobbydrone.cz: 650 mAh PH2.0, >20 in stock when checked | €6.80 each |
-| 10 | AO3400A | N-MOSFET, SOT-23, 30 V, logic-level | Reichelt exact AO3400A listing | €0.18 each |
-| 10 | SS14 | Schottky 1 A/40 V or equivalent | standard electronics distributor | <€2 pack |
-| 10 | 100 Ω resistors | 0603/0805 | standard electronics distributor | <€1 |
-| 10 | 100 kΩ resistors | 0603/0805 | standard electronics distributor | <€1 |
-| 2 | 470 µF low-ESR capacitor | ≥6.3 V | standard electronics distributor | ~€1 |
-| 2 | 100 µF low-ESR capacitor | ≥6.3 V | standard electronics distributor | ~€1 |
-| 1 | PH2.0 pigtail | 20-22 AWG preferred | RC/electronics supplier | ~€2 |
-| 1 | thin silicone wire | 26-28 AWG signal, 22-24 AWG battery | electronics supplier | ~€5 |
-| 1 | 1S LiHV-capable charger | must support 4.35 V if using LiHV | RC supplier | varies |
-| 1 | 20-30 mm lightweight carrier/perfboard OR Open32Drone carrier PCB | four MOSFET stages | Open32Drone hardware link in upstream repo | varies |
+- pin 1 = Gate
+- pin 2 = Source
+- pin 3 = Drain
 
-### Consolidated Amazon.de option
+For a perfboard prototype use a SOT-23 adapter or very short dead-bug leads.
 
-The following were all surfaced in the same Amazon.de marketplace ecosystem during verification: XIAO ESP32-S3 Sense, GY-91, 8520 motors and AO3400A packs. This is the closest current single-checkout option, but verify **1.0-mm motor shaft**, prop bore and LiPo connector immediately before purchase. Marketplace ASINs are deliberately not frozen in this repository because sellers and variants change.
+## Power components
 
-### Parts that matter most
+### D1-D4
 
-**Motor shaft:** 1.0 mm. Open32Drone explicitly warns that 0.8-mm 8520 variants will not take the specified propellers.
+Motor flyback diodes are **SS34-class ≥3 A Schottky** parts in V3.4. The earlier SS14/1 A choice is no longer the recommended motor diode.
 
-**Propeller type:** use low-pitch 2-blade props intended for brushed 8520/1020 motors. Do not substitute current 76-mm CineWhoop props with 5-mm hubs; those are for brushless motors and are mechanically incompatible.
+### C1 / C2
 
-**Battery:** V1 is designed around 550-650 mAh. The included cradle concept assumes approximately 62×20×8 mm maximum outer dimensions. Measure the ordered pack before printing the final cradle.
+- C1: 470 µF / 10 V low-ESR
+- C2: 100 µF / 10 V low-ESR
 
-**Camera:** current XIAO Sense production uses OV3660. Old OV2640 stock exists; the Seeed camera API remains compatible, but the current BOM targets OV3660. In practice, the unit ordered via `09_AMAZON_ORDER_LIST_DE.md` on 2026-09-02 turned out to be OV2640 — check what actually arrives before assuming either sensor.
+10 V parts provide more margin against brush-motor transients than the old 6.3 V entries.
 
-**Battery connector:** the BOM assumes PH2.0, but 1S packs are also commonly sold with BT2.0 (e.g. BETAFPV). Wire the power board's pigtail to match your actual battery — see the connector note in `02_ELECTRICAL.md`.
+### D5 and boost converter
 
-## Estimated cost
+Raw 1S LiHV can reach 4.35 V. V3.4 therefore feeds the XIAO through:
 
-A realistic V1 budget, excluding tools and radio transmitter, is approximately **€65-95** including spare motors/props and two batteries. The airframe itself uses only a few euros of filament.
+`VBAT → 1S→5V boost → D5 Schottky → XIAO 5V`
 
-## Optional V2 additions
+Do not connect raw LiHV directly to XIAO 5V/BAT in this hardware revision.
 
-- serial optical-flow + ToF module supported by Open32Drone
-- SBUS receiver (e.g. FlySky A8S or compatible)
-- dedicated RC transmitter
-- BT2.0/A30 battery connector conversion for lower connector loss
-- custom 30×30 mm carrier PCB after the prototype is validated
+## Connectors and wire
+
+Use Dupont/breadboard jumpers only for low-current signals/modules:
+
+- XIAO signal lines
+- GY-91
+- VL6180X
+- gimbal signal
+- boost control/sense wiring
+
+Battery and motor current must use suitable wire and connectors such as BT2.0/JST-XH or equivalent.
+
+## Perfboard prototype
+
+The temporary prototype uses a **70×30 mm** perfboard. See:
+
+- [02 - Electrical](02_ELECTRICAL.md)
+- [05 - Build and Test](05_BUILD_AND_TEST.md)
+- [10 - Perfboard V3.4 soldering](10_PERFBOARD_V34_SOLDERING_DE.md)
+
+The custom manufactured PCB is intended to replace the perfboard after first-article validation.
+
+## Sourcing note
+
+`09_AMAZON_ORDER_LIST_DE.md` is a dated marketplace sourcing snapshot. Electrical requirements in this BOM and in `02_ELECTRICAL.md` take precedence if the shopping list contains an older value.
 
 ---
 [← Docs index](README.md) | Next: [02 - Electrical →](02_ELECTRICAL.md)
