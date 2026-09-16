@@ -1,107 +1,159 @@
 [← Docs index](README.md)
 
-# 02 - Electrical
+# 02 - Electrical — IceDrone V3.4
 
-![V1 wiring overview](assets/wiring.svg)
+![V3.4 wiring overview](assets/wiring.svg)
 
-Full motor-stage netlist: [`hardware/motor_stage_netlist.csv`](../hardware/motor_stage_netlist.csv). Pin map: [`hardware/pinmap.csv`](../hardware/pinmap.csv).
+Authoritative machine-readable files:
+
+- [`hardware/motor_stage_netlist.csv`](../hardware/motor_stage_netlist.csv)
+- [`hardware/pinmap.csv`](../hardware/pinmap.csv)
+- [`hardware/perfboard_v34_netlist.csv`](../hardware/perfboard_v34_netlist.csv)
+- [`hardware/perfboard_v34_pin_matrix.csv`](../hardware/perfboard_v34_pin_matrix.csv)
+
+> **Revision note:** V3.4 supersedes the earlier V1/V3.2/V3.3 electrical notes. In particular, M2 uses GPIO44/D7 instead of GPIO3, D1-D4 are SS34-class flyback diodes, the XIAO is powered from a regulated 5 V boost path, and the photographed VL6180X module has a verified seven-pin order.
 
 ## Power architecture
 
-The entire V1 uses a **single 1S battery rail**. The motors are connected directly to VBAT and low-side switched by AO3400A MOSFETs. The XIAO is powered from its battery input; the IMU is powered from the XIAO 3V3 rail.
+IceDrone V3.4 uses a raw **1S LiHV VBAT rail** for the brushed motors and the FH-1502 gimbal. A fully charged 1S LiHV cell can reach 4.35 V.
 
-Do **not** add the Open32Drone 5 V boost module in V1 unless an optional sensor specifically needs 5 V. Removing it saves weight and reduces switching-noise sources.
+The XIAO ESP32-S3 Sense is **not** connected directly to raw VBAT in this revision. Use:
 
-### Recommended suppression
+`VBAT → off-board 1S→5V boost → D5 Schottky → XIAO 5V`
 
-- C1: 470 µF low-ESR across VBAT/GND at the motor stage
-- C2: 100 µF across VBAT/GND near the XIAO battery input
-- 100 nF ceramic close to the IMU supply
-- one SS14 flyback diode per motor: anode to MOSFET drain / motor negative, cathode to VBAT
-- short, wide battery and motor power wiring
-- route IMU I2C away from motor leads
+The common ground is shared. The XIAO's regulated 3V3 output then powers the GY-91 and the VL6180X breakout.
+
+### Required suppression and filtering
+
+- C1: **470 µF / 10 V low-ESR** across VBAT/GND
+- C2: **100 µF / 10 V low-ESR** across VBAT/GND
+- C3: **100 nF ceramic** from VBAT_ADC to GND, in parallel with R10
+- D1-D4: **SS34-class ≥3 A Schottky** flyback diodes
+- one additional **100 nF ceramic directly across each motor's terminals**
+- short, wide VBAT/GND/motor-current wiring
+- twisted motor wire pairs where practical
+- keep ADC and I2C wiring away from motor drain/PWM wiring
 
 ## Motor driver channel
 
-Each of the four motor channels is identical:
+Each motor is low-side switched by an AO3400A:
 
 ```mermaid
 flowchart LR
-    VBAT --> MOTOR["8520 motor"] --> DRAIN["AO3400A drain"]
-    DRAIN --> SOURCE["AO3400A source"] --> GND
-    DRAIN --> SS14["SS14 flyback diode<br/>anode = drain"] --> VBAT
-    GPIO -->|"100R gate resistor"| GATE["AO3400A gate"]
-    GATE --> DRAIN
-    GATE -->|"100k pulldown"| GND
+    VBAT --> MOTOR["8520 motor"] --> DRAIN["Motor− / MOSFET drain"]
+    DRAIN --> Q["AO3400A"] --> GND
+    DRAIN --> DIODE["SS34 ≥3 A<br/>anode = drain<br/>cathode/band = VBAT"] --> VBAT
+    GPIO -->|"100 Ω"| GATE["MOSFET gate"]
+    GATE -->|"100 kΩ"| GND
 ```
 
-Reference designators, from [`hardware/motor_stage_netlist.csv`](../hardware/motor_stage_netlist.csv):
+The gate pulldown is mandatory because it holds the MOSFET off while the ESP32 GPIO is high impedance during boot.
 
-| Ref | Value/Part | Connection 1 | Connection 2 | Connection 3 | Notes |
-|---|---|---|---|---|---|
-| Q1 | AO3400A | D=Motor1- | S=GND | G=R1_out | Rear-left |
-| Q2 | AO3400A | D=Motor2- | S=GND | G=R2_out | Rear-right |
-| Q3 | AO3400A | D=Motor3- | S=GND | G=R3_out | Rear-front-right |
-| Q4 | AO3400A | D=Motor4- | S=GND | G=R4_out | Front-left |
-| R1-R4 | 100R | GPIO PWM | Q gate | – | Gate damping |
-| R5-R8 | 100k | Q gate | GND | – | Gate pulldown |
-| D1-D4 | SS14 | Anode=Q drain | Cathode=VBAT | – | Flyback clamp; one per motor |
-| C1 | 470uF 6.3V low-ESR | VBAT | GND | – | Bulk motor transient suppression |
-| C2 | 100uF 6.3V low-ESR | VBAT | GND | – | Near XIAO BAT input |
-| C3 | 100nF ceramic | 3V3 | GND | – | Near IMU |
-| R9 | 100k | VBAT | VBAT_ADC | – | Battery divider upper |
-| R10 | 100k | VBAT_ADC | GND | – | Battery divider lower; ADC sees 0.5*VBAT |
+### AO3400A pinout
 
-Use four identical channels. The gate pulldown is important: it holds the motor off while the ESP32 boots and GPIOs are high impedance.
+For the SOT-23 AO3400A package:
 
-## Pin map
+- pin 1 = Gate
+- pin 2 = Source
+- pin 3 = Drain
 
-Full table, from [`hardware/pinmap.csv`](../hardware/pinmap.csv):
+On perfboard use a SOT-23 adapter or very short dead-bug leads. Do not infer the electrical node from the physical drawing alone; follow the netlist.
 
-| Function | XIAO pin/GPIO | Direction | Notes |
-|---|---|---|---|
-| IMU SDA | D1 / GPIO2 | I/O | I2C 400 kHz |
-| IMU SCL | D6 / GPIO43 | Output | I2C 400 kHz |
-| Motor rear-left | D3 / GPIO4 | Output | 10 kHz PWM to AO3400A gate |
-| Motor rear-right | D2 / GPIO3 | Output | 10 kHz PWM to AO3400A gate |
-| Motor front-right | D5 / GPIO6 | Output | 10 kHz PWM to AO3400A gate |
-| Motor front-left | D4 / GPIO5 | Output | 10 kHz PWM to AO3400A gate |
-| Battery ADC | D0 / GPIO1 | Input | External 100k/100k divider from VBAT; do not exceed ADC input range |
-| SBUS RX optional | D7 / GPIO44 | Input | Optional RC receiver |
-| SBUS TX optional | D10 / GPIO9 | Output | Optional / reserve |
-| Optical-flow RX optional | D9 / GPIO8 | Input | Future V2 |
-| Optical-flow TX optional | D8 / GPIO7 | Output | Future V2; conflicts with microSD if enabled |
-| Camera | internal Sense B2B GPIO10-18/38-40/47-48 | I/O | Do not reassign |
+## GPIO map
 
-The current Open32Drone documentation uses the same four motor GPIOs and I2C pins. The XIAO Sense camera itself uses internal GPIO10-18, 38-40, 47 and 48; therefore these pins must not be reused by the carrier.
+| Function | XIAO pin / GPIO | Notes |
+|---|---|---|
+| M1 rear-left | D3 / GPIO4 | PWM |
+| M2 rear-right | **D7 / GPIO44** | PWM; changed from GPIO3 in V3.4 |
+| M3 front-right | D5 / GPIO6 | PWM |
+| M4 front-left | D4 / GPIO5 | PWM |
+| Battery ADC | D0 / GPIO1 | 100k/100k divider + 100 nF filter |
+| I2C SDA | D1 / GPIO2 | GY-91 + VL6180X |
+| I2C SCL | D6 / GPIO43 | GY-91 + VL6180X |
+| Gimbal PWM | GPIO42 test pad | conflicts with Sense PDM microphone clock |
+
+GPIO3 is intentionally left unused in V3.4. The Sense camera GPIO set and microSD GPIO7/8/9/21 are preserved.
+
+## I2C requirement
+
+Because GPIO5 and GPIO6 are motor PWM outputs, do not rely on the XIAO default I2C pins.
+
+Firmware must explicitly initialize:
+
+```cpp
+Wire.begin(2, 43);
+```
 
 ## Battery measurement
 
-A 100k/100k divider from VBAT to GPIO1 gives:
+R9 and R10 form a 100k/100k divider:
+
+`VBAT → R9 → VBAT_ADC → R10 → GND`
+
+C3 = 100 nF is placed in parallel with R10 to suppress motor brush noise.
+
+Nominally:
 
 `V_ADC = VBAT / 2`
 
-At 4.35 V LiHV full charge this is ~2.175 V, comfortably below 3.3 V. In firmware:
+At 4.35 V battery voltage the ADC node is about 2.175 V.
+
+In firmware start with:
 
 `VBAT = V_ADC * 2.0`
 
-Calibrate the multiplier against a multimeter because ESP32 ADC gain varies. A practical calibration is to read at two battery voltages (near 4.1 V and 3.6 V) and fit a scale/offset.
+and calibrate against a multimeter.
 
-## Grounding
+## VL6180X — photographed module
 
-Use a star-like layout: battery ground enters the motor-driver board near the bulk capacitor. Motor currents should return directly to this point. Keep the XIAO/IMU ground path separate from the motor return as far as practical before joining at the battery ground region.
+With the actual module front side visible, text upright and header at the bottom, the physical pin order is:
 
-## Before plugging in the XIAO
+`VIN | 2V8 | GND | GPIO | SHDN | SCL | SDA`
 
-1. continuity test VBAT-to-GND: there must be no hard short;
-2. check every MOSFET source is GND;
-3. check each drain goes only to its motor negative and flyback diode anode;
-4. verify diode polarity;
-5. verify battery connector polarity with a multimeter (PH2.0 as designed, or BT2.0 if your battery uses that connector instead — see `09_AMAZON_ORDER_LIST_DE.md`);
-6. power from a current-limited bench supply at 3.7 V first if available;
-7. only then install the XIAO, still **without propellers**.
+V3.4 uses:
 
-> Connector note: some 1S packs (e.g. BETAFPV Aquila16) ship with **BT2.0**, not PH2.0. Wire the power board's battery pigtail to match whatever connector your actual battery uses — either fit a BT2.0 pigtail, or use a BT2.0-to-PH2.0 adapter — and always charge with a charger rated for that pack's chemistry/voltage (3.8 V-nominal LiHV packs want a matching LiHV charger, not a fixed-4.20 V one).
+- VIN → XIAO 3V3
+- GND → common GND
+- SCL → GPIO43 / D6
+- SDA → GPIO2 / D1
+- SHDN → optional / normally NC
+- 2V8 → NC
+- GPIO → NC
+
+Do **not** connect the module's 2V8 output to the XIAO 3V3 rail.
+
+## Perfboard coordinate convention
+
+The 70×30 mm perfboard uses this fixed convention:
+
+| View | left → right | top → bottom |
+|---|---|---|
+| component side | A B C D E F G H I J | 1…24 |
+| solder side | J I H G F E D C B A | 1…24 |
+
+- `A1-A24` = VBAT
+- `J1-J24` = GND
+- `E12` = unused
+
+The detailed construction guide and rear-view solder map are in [10 - Perfboard V3.4 soldering](10_PERFBOARD_V34_SOLDERING_DE.md).
+
+## Current-separation rule
+
+Dupont/breadboard jumper wires are only for low-current module and signal connections.
+
+Do **not** route battery or 8520 motor current through Dupont jumpers. Use BT2.0/JST-XH or equivalent appropriately rated wiring/connectors for battery and motor current.
+
+## Before connecting the XIAO
+
+1. continuity-test VBAT-to-GND; no hard short may be present;
+2. verify every MOSFET source is at GND;
+3. verify each drain is only on its own motor−/flyback node;
+4. verify D1-D4 cathode bands point toward VBAT;
+5. verify D5 cathode points toward XIAO 5V;
+6. verify C1/C2 polarity;
+7. verify raw VBAT has no direct path to XIAO 5V;
+8. verify boost output before connecting the XIAO;
+9. first power-up with propellers removed and preferably with a current-limited bench supply.
 
 ---
 [← 01 - BOM](01_BOM.md) | [Docs index](README.md) | Next: [03 - Mechanical →](03_MECHANICAL.md)
