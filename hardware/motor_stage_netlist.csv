@@ -1,13 +1,14 @@
 Ref,Value/Part,Connection 1,Connection 2,Connection 3,Notes
-Q1,AO3400A,D=Motor1-,S=GND,G=R1_out,Rear-left
-Q2,AO3400A,D=Motor2-,S=GND,G=R2_out,Rear-right
-Q3,AO3400A,D=Motor3-,S=GND,G=R3_out,Rear-front-right
-Q4,AO3400A,D=Motor4-,S=GND,G=R4_out,Front-left
+Q1,AO3400A,D=Motor1-,S=GND,G=R1/R5 node,Rear-left
+Q2,AO3400A,D=Motor2-,S=GND,G=R2/R6 node,Rear-right
+Q3,AO3400A,D=Motor3-,S=GND,G=R3/R7 node,Front-right
+Q4,AO3400A,D=Motor4-,S=GND,G=R4/R8 node,Front-left
 R1-R4,100R,GPIO PWM,Q gate,,Gate damping
 R5-R8,100k,Q gate,GND,,Gate pulldown
-D1-D4,SS14,Anode=Q drain,Cathode=VBAT,,Flyback clamp; one per motor
-C1,470uF 6.3V low-ESR,VBAT,GND,,Bulk motor transient suppression
-C2,100uF 6.3V low-ESR,VBAT,GND,,Near XIAO BAT input
-C3,100nF ceramic,3V3,GND,,Near IMU
+D1-D4,SS34-class >=3A Schottky,Anode=Q drain/C motor-,Cathode=VBAT/motor+,,Flyback clamp; band toward VBAT
+C1,470uF 10V low-ESR,VBAT,GND,,Bulk motor transient suppression
+C2,100uF 10V low-ESR,VBAT,GND,,Secondary bulk capacitor
+C3,100nF ceramic,VBAT_ADC,GND,,ADC anti-noise filter; parallel to R10
 R9,100k,VBAT,VBAT_ADC,,Battery divider upper
-R10,100k,VBAT_ADC,GND,,Battery divider lower; ADC sees 0.5*VBAT
+R10,100k,VBAT_ADC,GND,,Battery divider lower; ADC nominally sees 0.5*VBAT
+D5,Schottky >=1A,Anode=BOOST_5V,Cathode=XIAO_5V,,Isolation from regulated boost output
