@@ -1,6 +1,6 @@
 # IceDrone Documentation
 
-IceDrone is a small, 3D-printable brushed quadcopter built around the **Seeed Studio XIAO ESP32-S3 Sense**, **GY-91 IMU**, 8520 motors and the current **Airframe V2** mechanical stack.
+IceDrone is a small, 3D-printable brushed quadcopter built around the **Seeed Studio XIAO ESP32-S3 Sense**, **GY-91 IMU**, VL6180X ToF sensor, 8520 motors and the current **Airframe V2** mechanical stack.
 
 ![Airframe V2 assembly](assets/airframe_v2_assembly.png)
 
@@ -10,8 +10,8 @@ This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/
 
 | # | Chapter | Covers |
 |---:|---|---|
-| 01 | [Bill of Materials](01_BOM.md) | Parts list, sourcing notes, estimated cost |
-| 02 | [Electrical](02_ELECTRICAL.md) | Power architecture, motor driver channels, pin map, grounding |
+| 01 | [Bill of Materials](01_BOM.md) | Current V3.4 parts and electrical requirements |
+| 02 | [Electrical](02_ELECTRICAL.md) | V3.4 power architecture, motor stages, pin map, sensors |
 | 03 | [Mechanical](03_MECHANICAL.md) | Airframe V2, printable parts, STL/SCAD, Kobra S1 settings, CG |
 | 04 | [Firmware](04_FIRMWARE.md) | Open32Drone strategy, build settings, video/MAVLink design rules |
 | 05 | [Build and Test](05_BUILD_AND_TEST.md) | Step-by-step assembly and bring-up |
@@ -19,27 +19,43 @@ This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/
 | 07 | [Safety and Legal (DE/EU)](07_SAFETY_AND_LEGAL_DE.md) | Workshop safety and UAS legal notes |
 | 08 | [Troubleshooting](08_TROUBLESHOOTING.md) | Common faults and causes |
 | 09 | [Amazon.de Order List (DE)](09_AMAZON_ORDER_LIST_DE.md) | Dated marketplace shopping aid |
+| 10 | [Perfboard V3.4 soldering (DE)](10_PERFBOARD_V34_SOLDERING_DE.md) | Hole-by-hole solder map, SMD practice, multimeter gates |
 | — | [Sources](SOURCES.md) | Upstream projects and references |
 
 ## Current project status
 
 | Area | Status |
 |---|---|
-| Bill of materials | Available; verify actual delivered variants |
-| Electrical | Pin map, netlist and wiring documented |
+| Electrical revision | **V3.4 HW-VERIFIED is authoritative**; V3.2/V3.3 are obsolete for soldering |
+| Perfboard prototype | 70×30 mm V3.4 layout and detailed solder guide available |
+| Custom PCB | 70×30 mm turnkey/PCBA design path prepared; perfboard remains the bench prototype until first article arrives |
+| Bill of materials | Updated for SS34-class motor flyback, 10 V bulk capacitors and regulated XIAO 5 V supply |
 | Mechanical | **Airframe V2 current**; parametric OpenSCAD + STL + previews in `cad/airframe_v2/` |
 | Propeller CAD | Standard and experimental toroidal models in `cad/propellers/` |
-| Bench-test firmware | Available in `firmware/bench_test/`; **verified on real XIAO ESP32-S3 Sense hardware** (camera/IMU/motor-pulse smoke test, USB power only, no propellers) |
-| Camera Wi-Fi diagnostic | `firmware/camera_wifi_test/` streams MJPEG over the existing Wi-Fi LAN for pre-integration camera checks; verified working on real hardware |
-| Flight-critical firmware | Tracks upstream Open32Drone, vendored as the `vendor/open32drone` submodule with a small V1-config patch; **USB-only smoke test verified** (camera, Wi-Fi AP, MAVLink transport). See [04 - Firmware](04_FIRMWARE.md) and `firmware/open32drone/README.md`. Motor mapping/rotation, IMU calibration and battery calibration ([05 - Build and Test](05_BUILD_AND_TEST.md), Stages E-H) still need the motor/IMU hardware installed |
+| Bench-test firmware | Available in `firmware/bench_test/`; V3.4 motor map uses GPIO4/44/6/5 |
+| Camera Wi-Fi diagnostic | `firmware/camera_wifi_test/` streams MJPEG over the existing Wi-Fi LAN |
+| Flight-critical firmware | Tracks upstream Open32Drone; motor mapping/rotation, IMU calibration and battery calibration still require full hardware bring-up |
+
+## V3.4 electrical highlights
+
+- M1 GPIO4/D3
+- M2 **GPIO44/D7**
+- M3 GPIO6/D5
+- M4 GPIO5/D4
+- I2C SDA GPIO2/D1, SCL GPIO43/D6; firmware must call `Wire.begin(2, 43)`
+- D1-D4 = SS34-class ≥3 A Schottky
+- C1 = 470 µF / 10 V low-ESR
+- C2 = 100 µF / 10 V low-ESR
+- raw LiHV is not connected directly to XIAO 5V/BAT; use 1S→5 V boost + D5
+- photographed VL6180X order: VIN, 2V8, GND, GPIO, SHDN, SCL, SDA
 
 ## Related files
 
-- [`../README.md`](../README.md) — project overview with visual previews
-- [`../cad/airframe_v2/`](../cad/airframe_v2/) — current airframe SCAD/STL/renders
-- [`../cad/propellers/`](../cad/propellers/) — replacement/test propeller CAD
-- [`../bom/bom.csv`](../bom/bom.csv), [`../hardware/`](../hardware/) — machine-readable BOM and wiring data
+- [`../hardware/perfboard_v34_netlist.csv`](../hardware/perfboard_v34_netlist.csv) — authoritative perfboard connections
+- [`../hardware/perfboard_v34_pin_matrix.csv`](../hardware/perfboard_v34_pin_matrix.csv) — V3.4 external pin map
+- [`assets/perfboard_v34_solder_side.svg`](assets/perfboard_v34_solder_side.svg) — physically mirrored rear-view solder map
+- [`../hardware/pinmap.csv`](../hardware/pinmap.csv) — XIAO/GPIO mapping
+- [`../hardware/motor_stage_netlist.csv`](../hardware/motor_stage_netlist.csv) — motor/power component netlist
 - [`../firmware/bench_test/`](../firmware/bench_test/) — pre-flight bench firmware
-- [`../firmware/camera_wifi_test/`](../firmware/camera_wifi_test/) — diagnostic-only Wi-Fi MJPEG camera stream (not flight firmware)
-- [`../firmware/open32drone/`](../firmware/open32drone/) — V1 config patch and build/flash instructions for the vendored Open32Drone submodule
+- [`../cad/airframe_v2/`](../cad/airframe_v2/) — current airframe CAD
 - [`../LICENSE`](../LICENSE), [`../NOTICE`](../NOTICE) — licensing
