@@ -1,15 +1,22 @@
-qty,category,part,specification,preferred_supplier,verified_status_2026-09-02,unit_price_eur,url_or_search_note,critical_check
-1,compute,Seeed XIAO ESP32-S3 Sense,"8MB PSRAM/8MB Flash, OV3660",Botland,"Available, 24h",15.90,https://botland.de/wifi-und-bt-module-esp32/22926-seeed-xiao-esp32-s3-sense-kamera-kit-mit-ov3660-wifi-bluetooth-seeedstudio-113991115.html,Use Sense camera version
-1,sensor,GY-91 MPU9250+BMP280,3.3V I2C,Amazon.de marketplace,Product result verified,11.59,"Search: GY-91 MPU9250 BMP280 10DOF",Confirm MPU9250 not MPU6050 clone
-6,propulsion,8520 brushed motor,"8.5x20mm 3.7V, 1.0mm shaft",Amazon.de/LDARC,Variant availability changes,,"Search exact: 8520 coreless 1mm shaft",1.0mm shaft mandatory
-2,propulsion,76mm propeller set,"2-blade, 1.0mm bore, 2 CW + 2 CCW",Electrapac,Exact geometry listed,,https://www.electrapac.com/product/2-Pcs-76mm-Propeller-For-1020-8520-Coreless-motor,Do not buy 5mm CineWhoop hub
-2,power,EMAX 1S LiHV 650mAh,"3.8V nominal, 120C, PH2.0",Hobbydrone.cz,"In stock >20 when checked",6.80,https://www.hobbydrone.cz/de/tinyhawk-1s-120c-hv-650mah-lipo/,Use LiHV charger for 4.35V charge
-10,electronics,AO3400A,N-MOSFET 30V SOT-23,Reichelt,Exact product result,0.18,"Search: Reichelt AO3400A",Pin orientation critical
-10,electronics,SS14,Schottky 1A 40V,Reichelt/other distributor,Commodity,,,One across each motor
-10,electronics,100R resistor,0603/0805,Reichelt/other distributor,Commodity,,,Series gate resistor
-10,electronics,100k resistor,0603/0805,Reichelt/other distributor,Commodity,,,Gate pulldown and battery divider
-2,electronics,470uF capacitor,"low ESR, >=6.3V",Reichelt/other distributor,Commodity,,,Across VBAT near motor stage
-2,electronics,100uF capacitor,"low ESR, >=6.3V",Reichelt/other distributor,Commodity,,,Near XIAO BAT input
-1,power,PH2.0 pigtail,"20-22AWG",RC supplier,Commodity,,,Check polarity
-1,mechanical,PETG filament,1.75mm,Existing stock,Local,,,Frame
-1,mechanical,TPU 95A filament,1.75mm,Optional,Local,,,Camera cradle
+qty,category,part,specification,preferred_supplier,verified_status_2026-09-16,unit_price_eur,url_or_search_note,critical_check
+1,compute,Seeed XIAO ESP32-S3 Sense,"8MB PSRAM/8MB Flash, camera module",Existing/Seeed distributor,Project hardware,,,"Use Sense camera version"
+1,sensor,GY-91 MPU9250+BMP280,3.3V I2C,Electronics supplier,Project hardware,,,"Confirm actual IMU variant"
+1,sensor,VL6180X breakout,"7-pin photographed module; VIN 3-5V; I2C",Existing/marketplace,Physical module verified,,,"Pin order: VIN,2V8,GND,GPIO,SHDN,SCL,SDA"
+1,actuator,FH-1502 micro gimbal/servo,"1S-compatible class; PWM",Existing/marketplace,Project hardware,,,"GPIO42 PWM; Sense PDM microphone unavailable"
+6,propulsion,8520 brushed motor,"8.5x20mm 3.7V, 1.0mm shaft",Amazon.de/LDARC,Variant availability changes,,,"1.0mm shaft mandatory"
+2,propulsion,75-76mm propeller set,"2-blade, 1.0mm bore, CW/CCW",RC supplier,Variant availability changes,,,"Use matched CW/CCW set; verify bore"
+2,power,1S LiHV battery,"3.8V nominal, max 4.35V, BT2.0 preferred",RC supplier,Current V3.4 power profile,,,"Use LiHV-capable charger"
+1,power,1S to 5V boost module,">=0.7A continuous, >=1A transient recommended",Electronics supplier,Required by V3.4,,,"Do not feed raw LiHV directly to XIAO 5V/BAT"
+4,electronics,AO3400A,N-MOSFET 30V SOT-23,Reichelt/other distributor,Full production,,,"Pin 1 Gate, 2 Source, 3 Drain"
+4,electronics,SS34-class Schottky,">=3A, >=20V; SMA/compatible",Electronics supplier,Required by V3.4,,,"One across each motor; cathode/band to VBAT"
+1,electronics,Schottky diode D5,">=1A; e.g. SS14/1N5819W class",Electronics supplier,Required by V3.4,,,"Boost 5V isolation; cathode to XIAO 5V"
+4,electronics,100R resistor,0603/0805 or through-hole,Electronics supplier,Commodity,,,"Series gate resistor"
+6,electronics,100k resistor,0603/0805 or through-hole,Electronics supplier,Commodity,,,"4 gate pulldowns + 2 battery divider"
+1,electronics,470uF capacitor,"10V low-ESR",Electronics supplier,Required by V3.4,,,"C1 across VBAT/GND; observe polarity"
+1,electronics,100uF capacitor,"10V low-ESR",Electronics supplier,Required by V3.4,,,"C2 across VBAT/GND; observe polarity"
+5,electronics,100nF ceramic,"one ADC filter + one directly across each motor",Electronics supplier,Required by V3.4,,,"Motor capacitors directly at terminals"
+1,power,BT2.0 pigtail,"20-22AWG preferred",RC supplier,Recommended,,,"Check polarity"
+4,power,JST-XH or equivalent motor connector,"2-pin; suitable current path",Electronics supplier,Recommended,,,"Do not use Dupont for motor current"
+1,mechanical,70x30mm perfboard,"2.54mm pitch",Electronics supplier,Prototype,,,"Use V3.4 coordinate convention"
+1,mechanical,PETG filament,1.75mm,Existing stock,Local,,,"Frame"
+1,mechanical,TPU 95A filament,1.75mm,Optional,Local,,,"Camera cradle"
