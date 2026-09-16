@@ -1,18 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="850" viewBox="0 0 1300 850">
-<style>text{font-family:Arial,sans-serif;fill:#111}.box{fill:#fff;stroke:#222;stroke-width:2.5}.wire{stroke:#222;stroke-width:3;fill:none}.title{font-size:30px;font-weight:bold}.t{font-size:20px}.s{font-size:17px}</style>
-<text x="40" y="45" class="title">V1 wiring overview (one motor stage expanded)</text>
-<rect x="55" y="90" width="280" height="330" rx="18" class="box"/><text x="90" y="130" class="t">XIAO ESP32-S3 Sense</text>
-<text x="90" y="175" class="s">GPIO4  rear-left</text><text x="90" y="205" class="s">GPIO3  rear-right</text><text x="90" y="235" class="s">GPIO6  front-right</text><text x="90" y="265" class="s">GPIO5  front-left</text><text x="90" y="310" class="s">GPIO2  SDA</text><text x="90" y="340" class="s">GPIO43 SCL</text><text x="90" y="385" class="s">GPIO1  VBAT ADC</text>
-<rect x="55" y="500" width="280" height="160" rx="18" class="box"/><text x="110" y="545" class="t">GY-91</text><text x="95" y="585" class="s">VCC=3V3 · GND</text><text x="95" y="615" class="s">SDA=GPIO2 · SCL=GPIO43</text>
-<path d="M210 420 L210 500" class="wire"/>
-<rect x="455" y="105" width="700" height="500" rx="20" class="box"/><text x="500" y="145" class="t">Motor channel example</text>
-<text x="505" y="200" class="t">VBAT</text><path d="M570 195 L790 195" class="wire"/>
-<rect x="790" y="165" width="150" height="60" class="box"/><text x="825" y="203" class="t">8520 motor</text>
-<path d="M940 195 L1010 195 L1010 315" class="wire"/>
-<rect x="960" y="315" width="105" height="90" class="box"/><text x="982" y="350" class="t">AO3400A</text><text x="980" y="380" class="s">D  G  S</text>
-<path d="M1010 405 L1010 500" class="wire"/><text x="980" y="530" class="t">GND</text>
-<path d="M1010 195 L1120 195 L1120 315 L1065 315" class="wire"/><text x="1080" y="270" class="s">SS14</text><text x="1080" y="292" class="s">A→drain, K→VBAT</text>
-<path d="M335 175 L525 175 L525 355 L960 355" class="wire"/><text x="560" y="340" class="s">GPIO → 100Ω → Gate</text>
-<path d="M900 355 L900 470" class="wire"/><text x="825" y="445" class="s">100k pulldown</text><path d="M900 470 L1010 470" class="wire"/>
-<rect x="480" y="650" width="650" height="120" rx="18" class="box"/><text x="515" y="690" class="t">Battery rail</text><text x="515" y="725" class="s">1S battery → 470µF bulk → motors + XIAO BAT</text><text x="515" y="752" class="s">100k/100k divider → GPIO1 for calibrated VBAT measurement</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<style>
+text{font-family:Arial,sans-serif;fill:#111} .box{fill:#fff;stroke:#222;stroke-width:2.4} .wire{stroke:#222;stroke-width:3;fill:none}
+.pwr{stroke:#d62728;stroke-width:5;fill:none} .gnd{stroke:#222;stroke-width:5;fill:none} .sig{stroke:#1f77b4;stroke-width:3;fill:none;stroke-dasharray:8 6}
+.title{font-size:30px;font-weight:bold} .t{font-size:20px} .s{font-size:16px} .warn{fill:#a00;font-weight:bold}
+</style>
+<text x="40" y="45" class="title">IceDrone V3.4 wiring overview</text>
+<text x="40" y="72" class="s">GPIO44 for M2, SS34-class flyback, boosted/isolated XIAO 5V, custom I2C pins</text>
+<rect x="45" y="110" width="310" height="360" rx="18" class="box"/>
+<text x="75" y="148" class="t">XIAO ESP32-S3 Sense</text>
+<text x="75" y="188" class="s">D3 / GPIO4  → M1 rear-left</text><text x="75" y="216" class="s">D7 / GPIO44 → M2 rear-right</text><text x="75" y="244" class="s">D5 / GPIO6  → M3 front-right</text><text x="75" y="272" class="s">D4 / GPIO5  → M4 front-left</text>
+<text x="75" y="310" class="s">D0 / GPIO1  ← VBAT ADC</text><text x="75" y="338" class="s">D1 / GPIO2  ↔ SDA</text><text x="75" y="366" class="s">D6 / GPIO43 → SCL</text><text x="75" y="394" class="s">GPIO42 → gimbal PWM (PDM mic CLK conflict)</text><text x="75" y="432" class="s">Firmware: Wire.begin(2, 43)</text>
+<rect x="440" y="105" width="430" height="370" rx="18" class="box"/><text x="470" y="145" class="t">One motor channel (×4)</text><text x="475" y="198" class="t">VBAT</text><path d="M540 192 L660 192" class="pwr"/>
+<rect x="660" y="162" width="145" height="58" class="box"/><text x="692" y="198" class="t">8520 motor</text><path d="M805 192 L835 192 L835 290" class="wire"/>
+<rect x="785" y="290" width="110" height="90" class="box"/><text x="805" y="325" class="t">AO3400A</text><text x="802" y="354" class="s">D / G / S</text><path d="M835 380 L835 430" class="gnd"/><text x="805" y="458" class="t">GND</text>
+<path d="M835 192 L925 192 L925 290 L895 290" class="wire"/><text x="930" y="240" class="s">SS34 ≥3 A</text><text x="930" y="264" class="s">A=drain, K=VBAT</text>
+<path d="M440 330 L715 330 L785 330" class="sig"/><text x="520" y="315" class="s">PWM → 100Ω → gate</text><path d="M735 330 L735 410 L835 410" class="wire"/><text x="650" y="395" class="s">100k gate pulldown</text><text x="470" y="448" class="s">Add 100 nF ceramic directly across motor terminals for brush EMI.</text>
+<rect x="940" y="105" width="410" height="370" rx="18" class="box"/><text x="970" y="145" class="t">Power architecture</text><text x="970" y="188" class="s">1S LiHV VBAT (max 4.35 V)</text><path d="M1000 208 L1280 208" class="pwr"/>
+<text x="970" y="248" class="s">VBAT → motors + FH-1502 gimbal</text><text x="970" y="286" class="s">VBAT → off-board 1S→5V boost</text><text x="970" y="316" class="s">BOOST_5V → D5 Schottky → XIAO 5V</text><text x="970" y="354" class="s">XIAO 3V3 → GY-91 + VL6180X VIN</text><text x="970" y="392" class="s warn">Never connect raw LiHV directly to XIAO 5V/BAT.</text><text x="970" y="430" class="s">C1 470µF/10V + C2 100µF/10V across VBAT/GND</text>
+<rect x="45" y="540" width="1305" height="270" rx="18" class="box"/><text x="75" y="580" class="t">External modules and signal map</text><text x="75" y="620" class="s">GY-91: 3V3, GND, SDA=GPIO2, SCL=GPIO43</text><text x="75" y="652" class="s">VL6180X: VIN→3V3, 2V8 NC, GND, GPIO NC, SHDN optional, SCL→GPIO43, SDA→GPIO2</text><text x="75" y="684" class="s">FH-1502: VBAT, GND, PWM→GPIO42</text><text x="75" y="716" class="s">Battery ADC: 100k/100k divider + 100nF filter → GPIO1/D0</text><text x="75" y="748" class="s">Battery/motor current: BT2.0/JST-XH or equivalent; do not use Dupont jumpers.</text><text x="75" y="780" class="s">Bench bring-up: no propellers; continuity checks first; current-limited supply recommended.</text>
 </svg>
