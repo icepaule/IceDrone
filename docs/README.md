@@ -62,6 +62,8 @@ This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/
 - [`../bom/reflow_bom.csv`](../bom/reflow_bom.csv) — tools/consumables for stencil + Sn42Bi58 reflow
 - [`assets/stencil_setup_v34.svg`](assets/stencil_setup_v34.svg) — oversized-stencil setup
 - [`assets/reflow_profile_sn42bi58.svg`](assets/reflow_profile_sn42bi58.svg) — low-temperature profile reference
+- [`assets/reflow_real_stencil_fixture_v34.jpg`](assets/reflow_real_stencil_fixture_v34.jpg) — real stencil/clamping setup
+- [`assets/reflow_real_yihua_setup_v34.jpg`](assets/reflow_real_yihua_setup_v34.jpg) — real YIHUA setup / mechanical fit reference
 - [`../firmware/bench_test/`](../firmware/bench_test/) — pre-flight bench firmware
 - [`../cad/airframe_v2/`](../cad/airframe_v2/) — current airframe CAD
 - [`../LICENSE`](../LICENSE), [`../NOTICE`](../NOTICE) — licensing
