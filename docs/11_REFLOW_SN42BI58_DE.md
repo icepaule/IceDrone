@@ -11,6 +11,24 @@
 
 ![Gesamtablauf](assets/reflow_process_v34.svg)
 
+## 0. Realer IceDrone-Aufbau
+
+Die folgenden Fotos dokumentieren den **tatsächlich vorhandenen Stencil-Halter und die YIHUA YH-853AAA**. Sie sind damit die praktische Referenz für diese Anleitung.
+
+### Stencil auf der Spannvorrichtung
+
+![Realer Stencil-Aufbau](assets/reflow_real_stencil_fixture_v34.jpg)
+
+Der große Edelstahl-Stencil liegt auf der Spannvorrichtung über dem kleinen IceDrone-PCB. Das ist grundsätzlich passend: Der Stencil darf deutlich größer als die Platine sein, solange er über dem PCB plan aufliegt und sich beim Rakeln nicht durchbiegt. Die roten Klemmbacken dürfen den Stencil bzw. das PCB beim Ausrichten nicht verschieben.
+
+### Spannvorrichtung an der YIHUA
+
+![Realer Aufbau an der YIHUA](assets/reflow_real_yihua_setup_v34.jpg)
+
+> **Sehr wichtig:** Auf diesem Foto ist der Stencil noch unter der Heißluftdüse zu sehen. Das Foto dokumentiert nur die mechanische Passprobe/Ausrichtung. **Für den tatsächlichen Reflow muss der Stencil vollständig entfernt sein, bevor Vorheizer oder Heißluft eingeschaltet werden.** Auf die YIHUA kommt zum Reflow ausschließlich das bereits mit Paste bedruckte und mit SMD-Bauteilen bestückte PCB.
+
+Die Spannvorrichtung kann zum kalten Ausrichten genutzt werden. Für das Aufheizen soll das PCB anschließend möglichst frei, eben und mittig über der Vorheizzone liegen, damit Metall-Stencil und massive Halter keine unnötigen Wärmebrücken bilden.
+
 ## 1. Warum Sn42Bi58 hier anders behandelt wird
 
 Sn42Bi58 ist ein eutektisches Niedrigtemperaturlot. Solidus und Liquidus liegen bei ungefähr **138 °C**. Dadurch kann die Platine deutlich kühler verarbeitet werden als mit SAC305. Als Referenz zeigt ein industrielles Low-Temperature-Profil für eine sehr ähnliche Sn/Bi-Legierung einen langsamen Ramp von Raumtemperatur über 90 °C und 130 °C, dann einen Peak um **165 °C** und anschließendes Abkühlen.
@@ -49,6 +67,12 @@ Die separat bestellte Flux-Paste wird **nicht unter die Stencil-Paste geschmiert
 Der Stencil wird **nur zum Drucken der Paste** verwendet. Er wird vor dem Bestücken wieder abgenommen und kommt niemals auf den Vorheizer.
 
 ![Stencil-Aufbau](assets/stencil_setup_v34.svg)
+
+**Reale Umsetzung mit deiner Spannvorrichtung:**
+
+![Stencil auf deiner Vorrichtung](assets/reflow_real_stencil_fixture_v34.jpg)
+
+Die Vorrichtung ersetzt die einfache Klebeband-/Shim-Lösung teilweise sehr gut. Entscheidend bleibt, dass das PCB selbst nicht wackelt, die Oberkante des PCB und etwaige Auflagen eine plane Fläche ergeben und die Stencil-Aperturen exakt über den Pads sitzen.
 
 Da der Stencil größer als das 70 × 30 mm PCB ist, werden links/rechts bzw. ringsum **FR4-/PCB-Reststücke gleicher Dicke** als Shims aufgelegt. Damit kann der Stencil nicht an der PCB-Kante durchhängen.
 
@@ -121,6 +145,12 @@ Vor dem Heizen ein Foto des fertig bestückten, noch kalten PCBs machen. Das hil
 Die YIHUA hat laut Hersteller einen **120 × 120 mm Vorheizbereich** und einen separat geregelten Heißluftkanal. Das 70 × 30 mm IceDrone-PCB deshalb ungefähr mittig über dem Vorheizer positionieren.
 
 ![YIHUA-Aufbau](assets/reflow_station_setup_v34.svg)
+
+**Realer Stationsaufbau:**
+
+![YIHUA YH-853AAA mit Spannvorrichtung](assets/reflow_real_yihua_setup_v34.jpg)
+
+Die Heißluftdüse sitzt in deinem Aufbau gut erreichbar über der Platinenposition. Für den eigentlichen Reflow aber die Edelstahl-Schablone entfernen und möglichst auch unnötige massive Metallteile aus der direkten Heizzone nehmen. Der Luftstrom soll die kleinen Bauteile nicht wegschieben; die Düse deshalb nicht unnötig nahe an die Platine führen.
 
 ### 7.1 PCB-Abstand
 
@@ -251,6 +281,48 @@ Für reine THT-Verbindungen, die elektrisch/mechanisch unabhängig von Sn42Bi58-
 ## 15. Schnellablauf für die Werkbank
 
 **Reinigen → PCB fixieren → gleichdicke Shims → Stencil ausrichten → Kapton-Scharnier → Paste einmal rakeln → Stencil senkrecht abheben → Druck prüfen → Bauteile setzen → Vorheizen → niedriges Heißluft-Reflow → natürlich abkühlen → Mikroskop → Multimeter → erst danach THT und Strom.**
+
+## 16. Reflow-Prozess als Bildstrecke
+
+Die komplette Arbeitsfolge ist zusätzlich noch einmal bildgestützt zusammengefasst.
+
+### 16.1 Gesamtablauf
+
+![Gesamtablauf Reflow](assets/reflow_process_v34.svg)
+
+**Reinigen → Paste drucken → SMD bestücken → reflowen → optisch prüfen → elektrisch messen.**
+
+### 16.2 Stencil und Pastendruck
+
+![Stencil-Setup](assets/stencil_setup_v34.svg)
+
+Der Stencil liegt beim Drucken plan auf; die Spannvorrichtung oder gleichdicke FR4-Shims verhindern ein Durchbiegen.
+
+### 16.3 YIHUA-Aufbau
+
+![YIHUA Setup](assets/reflow_station_setup_v34.svg)
+
+Nur das **bestückte PCB ohne Stencil** wird vorgeheizt und anschließend mit niedrigem Heißluftstrom auf Reflow-Temperatur gebracht.
+
+### 16.4 Temperaturverlauf Sn42Bi58
+
+![Sn42Bi58 Temperaturprofil](assets/reflow_profile_sn42bi58.svg)
+
+Der 138-°C-Liquidus wird nur kontrolliert überschritten; Zielbereich am PCB ist ungefähr 155–165 °C.
+
+### 16.5 Kontrolle nach dem Reflow
+
+![Fehlerbilder Reflow](assets/post_reflow_inspection_v34.svg)
+
+Erst nach Lupe/Mikroskop und Kurzschlussprüfung werden THT-Stecker bzw. externe Module angeschlossen.
+
+### 16.6 Reale Fotos
+
+| Stencil/Spannvorrichtung | YIHUA/Heißluftstation |
+|---|---|
+| ![Stencil real](assets/reflow_real_stencil_fixture_v34.jpg) | ![YIHUA real](assets/reflow_real_yihua_setup_v34.jpg) |
+
+> Das rechte Foto zeigt die mechanische Passprobe. Beim tatsächlichen Reflow ist der Stencil bereits entfernt.
 
 ## Quellen / Referenzen
 
