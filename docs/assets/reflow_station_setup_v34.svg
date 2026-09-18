@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<style>text{font-family:Arial,sans-serif;fill:#111827}.title{font-size:34px;font-weight:700}.h{font-size:24px;font-weight:700}.t{font-size:20px}.pre{fill:#f97316;fill-opacity:.30;stroke:#c2410c;stroke-width:3}.pcb{fill:#166534;stroke:#052e16;stroke-width:3}.hot{fill:#cbd5e1;stroke:#475569;stroke-width:3}.air{stroke:#ef4444;stroke-width:5;stroke-dasharray:12 10;marker-end:url(#a)}.thermo{stroke:#2563eb;stroke-width:4;fill:none}</style>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#ef4444"/></marker></defs>
+<text x="60" y="60" class="title">YIHUA YH-853AAA — IceDrone V3.4 Reflow-Aufbau</text>
+<rect x="220" y="520" width="1160" height="250" rx="24" class="pre"/><text x="800" y="735" text-anchor="middle" class="h">120×120 mm Vorheizzone — PCB mittig platzieren</text>
+<rect x="560" y="455" width="480" height="130" rx="12" class="pcb"/><text x="800" y="530" text-anchor="middle" fill="white" style="font:700 30px Arial">PCB 70×30 mm</text>
+<path d="M1080 480 C1180 420 1210 350 1210 250" class="thermo"/><circle cx="1080" cy="480" r="9" fill="#2563eb"/><text x="1225" y="250" class="t">K-Thermoelement</text><text x="1225" y="280" class="t">mit Kapton fixiert</text>
+<g transform="translate(690,120)"><rect x="0" y="0" width="220" height="110" rx="20" class="hot"/><rect x="85" y="110" width="50" height="100" class="hot"/><text x="110" y="65" text-anchor="middle" class="h">Heißluft</text></g>
+<line x1="760" y1="340" x2="690" y2="455" class="air"/><line x1="800" y1="340" x2="800" y2="455" class="air"/><line x1="840" y1="340" x2="910" y2="455" class="air"/>
+<text x="990" y="360" class="t">4–6 cm Abstand</text><text x="990" y="395" class="t">niedriger Luftstrom</text><text x="990" y="430" class="t">langsam kreisend</text>
+<text x="60" y="835" class="h">Praxisstart:</text><text x="250" y="835" class="t">Preheater 90–120 °C stufenweise; Hot Air 180–190 °C starten, nur bei Bedarf auf 190–205 °C erhöhen.</text>
+<text x="60" y="870" class="t">Entscheidend ist die reale PCB-Temperatur und das sichtbare Fließen der Paste — nicht allein die Stationsanzeige.</text>
+</svg>
