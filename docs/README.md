@@ -20,6 +20,8 @@ This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/
 | 08 | [Troubleshooting](08_TROUBLESHOOTING.md) | Common faults and causes |
 | 09 | [Amazon.de Order List (DE)](09_AMAZON_ORDER_LIST_DE.md) | Dated marketplace shopping aid |
 | 10 | [Perfboard V3.4 soldering (DE)](10_PERFBOARD_V34_SOLDERING_DE.md) | Hole-by-hole solder map, SMD practice, multimeter gates |
+| 11 | [PCB-Reflow Sn42Bi58 (DE)](11_REFLOW_SN42BI58_DE.md) | Stencil, paste printing, YIHUA YH-853AAA profile, inspection |
+| — | [Reflow Quick Card](REFLOW_QUICK_CARD_DE.md) | Condensed workbench checklist |
 | — | [Sources](SOURCES.md) | Upstream projects and references |
 
 ## Current project status
@@ -28,7 +30,8 @@ This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/
 |---|---|
 | Electrical revision | **V3.4 HW-VERIFIED is authoritative**; V3.2/V3.3 are obsolete for soldering |
 | Perfboard prototype | 70×30 mm V3.4 layout and detailed solder guide available |
-| Custom PCB | 70×30 mm turnkey/PCBA design path prepared; perfboard remains the bench prototype until first article arrives |
+| Custom PCB | **70×30 mm PCB and stencil received**; manual first-article assembly/reflow procedure documented |
+| Reflow process | Sn42Bi58 low-temperature workflow for YIHUA YH-853AAA documented; separate `bom/reflow_bom.csv` available |
 | Bill of materials | Updated for SS34-class motor flyback, 10 V bulk capacitors and regulated XIAO 5 V supply |
 | Mechanical | **Airframe V2 current**; parametric OpenSCAD + STL + previews in `cad/airframe_v2/` |
 | Propeller CAD | Standard and experimental toroidal models in `cad/propellers/` |
@@ -56,6 +59,9 @@ This documentation belongs to [github.com/icepaule/IceDrone](https://github.com/
 - [`assets/perfboard_v34_solder_side.svg`](assets/perfboard_v34_solder_side.svg) — physically mirrored rear-view solder map
 - [`../hardware/pinmap.csv`](../hardware/pinmap.csv) — XIAO/GPIO mapping
 - [`../hardware/motor_stage_netlist.csv`](../hardware/motor_stage_netlist.csv) — motor/power component netlist
+- [`../bom/reflow_bom.csv`](../bom/reflow_bom.csv) — tools/consumables for stencil + Sn42Bi58 reflow
+- [`assets/stencil_setup_v34.svg`](assets/stencil_setup_v34.svg) — oversized-stencil setup
+- [`assets/reflow_profile_sn42bi58.svg`](assets/reflow_profile_sn42bi58.svg) — low-temperature profile reference
 - [`../firmware/bench_test/`](../firmware/bench_test/) — pre-flight bench firmware
 - [`../cad/airframe_v2/`](../cad/airframe_v2/) — current airframe CAD
 - [`../LICENSE`](../LICENSE), [`../NOTICE`](../NOTICE) — licensing
