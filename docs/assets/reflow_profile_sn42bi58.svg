@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<style>text{font-family:Arial,sans-serif;fill:#111827}.title{font-size:34px;font-weight:700}.h{font-size:22px;font-weight:700}.t{font-size:18px}.axis{stroke:#111827;stroke-width:3}.grid{stroke:#cbd5e1;stroke-width:1}.curve{fill:none;stroke:#dc2626;stroke-width:6}.liq{stroke:#2563eb;stroke-width:3;stroke-dasharray:10 8}.peak{stroke:#059669;stroke-width:3;stroke-dasharray:7 7}</style>
+<text x="60" y="60" class="title">Sn42Bi58 — konservatives Reflow-Startprofil für manuellen YIHUA-Prozess</text>
+<line x1="120" y1="760" x2="1480" y2="760" class="axis"/><line x1="120" y1="760" x2="120" y2="120" class="axis"/>
+<g class="t">
+<line x1="120" y1="692" x2="1480" y2="692" class="grid"/><text x="70" y="700">25°C</text>
+<line x1="120" y1="500" x2="1480" y2="500" class="grid"/><text x="65" y="508">90°C</text>
+<line x1="120" y1="380" x2="1480" y2="380" class="grid"/><text x="55" y="388">130°C</text>
+<line x1="120" y1="356" x2="1480" y2="356" class="liq"/><text x="45" y="364" fill="#2563eb">138°C</text>
+<line x1="120" y1="275" x2="1480" y2="275" class="peak"/><text x="45" y="283" fill="#059669">165°C</text>
+</g>
+<g class="t"><text x="112" y="800">0s</text><text x="470" y="800">90s</text><text x="825" y="800">180s</text><text x="945" y="800">210s</text><text x="1065" y="800">240s</text><text x="1185" y="800">270s</text></g>
+<path d="M120 692 C260 620 360 545 480 500 C620 455 720 410 835 380 C900 370 930 365 955 356 C1000 325 1035 290 1075 275 C1120 290 1160 330 1195 356 C1270 430 1370 560 1470 680" class="curve"/>
+<text x="250" y="600" class="h">Vorwärmen</text><text x="620" y="430" class="h">Soak</text><text x="980" y="240" class="h">Reflow</text><text x="1250" y="500" class="h">Abkühlen</text>
+<rect x="960" y="315" width="250" height="120" rx="15" fill="#eff6ff" stroke="#2563eb"/><text x="1085" y="350" text-anchor="middle" class="h">Liquidus 138°C</text><text x="1085" y="383" text-anchor="middle" class="t">nur einige zehn Sekunden</text><text x="1085" y="413" text-anchor="middle" class="t">sichtbar flüssig halten</text>
+<text x="120" y="850" class="t">Referenzform nach Low-Temperature-Sn/Bi-Profilen; die BEEYUIHF-Paste kann abweichende Flux-/Profilangaben haben. Produktdatenblatt hat Vorrang.</text>
+</svg>
