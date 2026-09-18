@@ -3,9 +3,10 @@
 # 01 - Bill of Materials (BOM)
 
 **Current electrical revision:** IceDrone V3.4  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-18
 
-Machine-readable version: [`bom/bom.csv`](../bom/bom.csv).
+Machine-readable hardware version: [`bom/bom.csv`](../bom/bom.csv).  
+Dedicated PCB-reflow tooling/consumables: [`bom/reflow_bom.csv`](../bom/reflow_bom.csv).
 
 > The older V1 sourcing list contained SS14 motor flyback diodes, 6.3 V bulk capacitors and a direct XIAO battery-input concept. Those values are **obsolete for V3.4**. Use the V3.4 requirements below.
 
@@ -32,6 +33,22 @@ Machine-readable version: [`bom/bom.csv`](../bom/bom.csv).
 | 1 | power | BT2.0 pigtail | 20–22 AWG preferred | polarity |
 | 4 | power | JST-XH/equivalent 2-pin motor connector | current-capable | no Dupont for motor current |
 | 1 | prototype | 70×30 mm perfboard | 2.54 mm pitch | V3.4 coordinate system |
+
+## PCB first-article / reflow BOM
+
+The custom **70×30 mm PCB and stencil are now physically available**. The dedicated assembly list is [`bom/reflow_bom.csv`](../bom/reflow_bom.csv) and includes:
+
+- YIHUA YH-853AAA preheater/hot-air station;
+- V3.4 stainless stencil;
+- Sn42Bi58 low-temperature solder paste, 138 °C eutectic;
+- Kapton tape for the stencil hinge / thermocouple;
+- same-thickness FR4/old-PCB shims for an oversized stencil;
+- squeegee, ESD tweezers and magnification;
+- 99% IPA + lint-free wipes;
+- optional but strongly recommended K-type thermocouple;
+- no-clean flux and fine desoldering braid for rework.
+
+See [11 - PCB Reflow Sn42Bi58](11_REFLOW_SN42BI58_DE.md) before applying paste.
 
 ## AO3400A
 
