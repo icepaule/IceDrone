@@ -19,3 +19,10 @@
 15. Erst danach THT/Stecker und strombegrenzter Ersttest. Keine Propeller.
 
 **Kein Sn60PbCu2 in bestehende Sn42Bi58-SMD-Lötstellen einmischen.**
+
+## Reale Fotos
+
+- [Stencil/Spannvorrichtung](assets/reflow_real_stencil_fixture_v34.jpg)
+- [YIHUA-Aufbau](assets/reflow_real_yihua_setup_v34.jpg)
+
+**Achtung:** Das YIHUA-Foto zeigt die mechanische Passprobe mit aufgelegtem Stencil. Vor dem tatsächlichen Heizen Stencil vollständig entfernen.
