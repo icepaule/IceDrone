@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<style>text{font-family:Arial,sans-serif;fill:#111827}.title{font-size:34px;font-weight:700}.h{font-size:25px;font-weight:700}.t{font-size:20px}.s{font-size:17px}.board{fill:#166534;stroke:#052e16;stroke-width:3}.stencil{fill:#e2e8f0;fill-opacity:.78;stroke:#64748b;stroke-width:3}.shim{fill:#cbd5e1;stroke:#475569;stroke-width:2}.kap{fill:#facc15;fill-opacity:.8;stroke:#a16207;stroke-width:2}.paste{fill:#737373}.arrow{stroke:#dc2626;stroke-width:4;marker-end:url(#a)}</style>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#dc2626"/></marker></defs>
+<text x="60" y="60" class="title">Stencil-Aufbau für ein 70×30-mm-PCB bei größerem Stencil</text>
+<text x="60" y="105" class="t">Draufsicht — gleiche Materialhöhe rund um das PCB verhindert Durchbiegen.</text>
+<rect x="180" y="210" width="1240" height="480" rx="16" class="stencil"/>
+<rect x="500" y="355" width="600" height="260" rx="10" class="board"/>
+<text x="800" y="490" text-anchor="middle" fill="white" style="font:700 34px Arial">IceDrone PCB 70×30 mm</text>
+<rect x="260" y="355" width="220" height="260" rx="8" class="shim"/><text x="370" y="490" text-anchor="middle" class="h">FR4-Shim</text><text x="370" y="525" text-anchor="middle" class="s">gleiche Dicke</text>
+<rect x="1120" y="355" width="220" height="260" rx="8" class="shim"/><text x="1230" y="490" text-anchor="middle" class="h">FR4-Shim</text><text x="1230" y="525" text-anchor="middle" class="s">gleiche Dicke</text>
+<rect x="180" y="185" width="1240" height="42" class="kap"/><text x="800" y="178" text-anchor="middle" class="h">Kapton-Scharnier</text>
+<rect x="350" y="275" width="260" height="28" rx="14" class="paste"/><text x="480" y="258" text-anchor="middle" class="t">Paste-Strang</text>
+<line x1="660" y1="292" x2="960" y2="292" class="arrow"/><text x="810" y="270" text-anchor="middle" class="t">Rakelrichtung 45–60°</text>
+<text x="60" y="765" class="h">Nach dem Rakeln:</text><text x="60" y="805" class="t">Stencil am Scharnier nahezu senkrecht hochklappen — nicht seitlich über die Pastendepots ziehen.</text>
+<text x="60" y="845" class="t">Stencil reinigen und beiseite legen. Nur das bestückte PCB geht anschließend zur YIHUA.</text>
+</svg>
