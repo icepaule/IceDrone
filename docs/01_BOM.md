@@ -6,7 +6,8 @@
 **Updated:** 2026-09-18
 
 Machine-readable hardware version: [`bom/bom.csv`](../bom/bom.csv).  
-Dedicated PCB-reflow tooling/consumables: [`bom/reflow_bom.csv`](../bom/reflow_bom.csv).
+Dedicated PCB-reflow tooling/consumables: [`bom/reflow_bom.csv`](../bom/reflow_bom.csv).  
+Current first-article SMD inventory / missing-parts list: [`bom/pcb_smd_inventory_v34.csv`](../bom/pcb_smd_inventory_v34.csv).
 
 > The older V1 sourcing list contained SS14 motor flyback diodes, 6.3 V bulk capacitors and a direct XIAO battery-input concept. Those values are **obsolete for V3.4**. Use the V3.4 requirements below.
 
