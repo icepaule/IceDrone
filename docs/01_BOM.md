@@ -34,6 +34,23 @@ Dedicated PCB-reflow tooling/consumables: [`bom/reflow_bom.csv`](../bom/reflow_b
 | 4 | power | JST-XH/equivalent 2-pin motor connector | current-capable | no Dupont for motor current |
 | 1 | prototype | 70×30 mm perfboard | 2.54 mm pitch | V3.4 coordinate system |
 
+## Vorhandenes Aluminium-Elko-Kit (Werkstattbestand)
+
+Auf dem am 2026-09-19 fotografierten **925Pcs / 36 Values Aluminum Capacitor Box Kit** sind unter anderem folgende für V3.4 interessante radiale THT-Elkos vorhanden:
+
+| Kit-Wert | Abmessung laut Box | Bezug zu V3.4 | Bewertung |
+|---|---:|---|---|
+| 470 µF / 10 V | 6×7 mm | entspricht C1 elektrisch | **nicht als finaler C1**: radial/THT; Low-ESR nicht spezifiziert |
+| 100 µF / 25 V | 6×12 mm | möglicher C2-Wert elektrisch | **nicht als finaler C2**: radial/THT; Low-ESR nicht spezifiziert |
+| 100 µF / 35 V | 6×7 mm | möglicher C2-Wert elektrisch | **nicht als finaler C2**: radial/THT; Low-ESR nicht spezifiziert |
+
+Die höhere Spannungsfestigkeit bei C2 wäre elektrisch unkritisch; entscheidend sind aber **Low-ESR-Eigenschaft und SMD-Footprint-Kompatibilität**. Die V3.4-PCB-Anforderung bleibt deshalb:
+
+- **C1:** 470 µF / mindestens 10 V, low-ESR, SMD-Aluminium-Elko; bevorzugt Panasonic **EEE-FP1A471AP** (ca. Ø8×10.2 mm; passendes SMD-Land-Pattern vorausgesetzt).
+- **C2:** 100 µF / mindestens 10 V, low-ESR, SMD-Aluminium-/Polymer-Elko; mechanisch zum tatsächlich gefertigten PCB-Footprint passend.
+
+Die radialen Kit-Elkos können bei Bedarf als **temporäre Bench-/Messkondensatoren** mit sehr kurzen Leitungen verwendet werden, sind aber kein 1:1-Ersatz für die vorgesehenen SMD-Bauteile auf dem Flug-PCB.
+
 ## PCB first-article / reflow BOM
 
 The custom **70×30 mm PCB and stencil are now physically available**. The dedicated assembly list is [`bom/reflow_bom.csv`](../bom/reflow_bom.csv) and includes:
