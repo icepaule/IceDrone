@@ -84,6 +84,21 @@ Die drei vorhandenen Bauteilstreifen sind als **SS14, 1 A / 40 V im SMA-/DO-214A
 
 Darum werden die vorhandenen SS14 nicht in den ersten PCB-Reflow eingeplant. Der aktuelle Bestandsstatus steht in [`bom/pcb_smd_inventory_v34.csv`](../bom/pcb_smd_inventory_v34.csv).
 
+## 1.6 Eurocircuits-Fertigungsunterlagen ausgewertet
+
+Die gelieferten Eurocircuits-Unterlagen für die tatsächlich gefertigte V3.4-B70-Platine bestätigen die reale Leiterplatte als **70 × 30 mm, 2 Lagen, ca. 1.55 mm FR-4, bleifreie Oberfläche und elektrischen Test**. Die Bestellung war eine **Bare-PCB-Bestellung ohne Assembly/Components**.
+
+Aus dem Produktions-Topview lässt sich für den Reflow zusätzlich direkt ableiten:
+
+- **Q1–Q4:** SOT-23-Footprints wie vorgesehen.
+- **D1–D4:** große SMA/DO-214AC-Footprints an den vier Motorstufen.
+- **D5:** deutlich kleineres 2-Pad-Footprint im 5V/XIA-Bereich; vorhandene SS14 im SMA-Gehäuse sind mechanisch zu groß.
+- **R1–R10 / C3:** kleine Chip-Footprints der 0603-Klasse.
+- **C1/C2:** SMD-Aluminium-Elko-Footprints; keine radialen THT-Bohrungen. Das vorhandene BEEYUIHF-Radial-Elko-Sortiment ist daher nicht direkt für C1/C2 verwendbar.
+- Die zwei Bulk-Elko-Landpatterns unterscheiden sich sichtbar in der Breite/Padteilung und entsprechen der bisherigen Planung mit ungefähr **8-mm-Klasse für C1** und **6.3-mm-Klasse für C2**.
+
+Damit ist die offene Footprint-Frage für die Einkaufsliste praktisch geklärt: ein 0603-Sortiment kann die kleinen Passiven abdecken, die beiden Bulk-SMD-Elkos müssen jedoch footprintgerecht beschafft werden.
+
 ## 2. Reflow-BOM / Arbeitsplatz
 
 Die maschinenlesbare Liste liegt unter [`bom/reflow_bom.csv`](../bom/reflow_bom.csv).
