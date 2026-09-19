@@ -7,7 +7,7 @@ qty,category,part,specification,preferred_supplier,verified_status_2026-09-16,un
 2,propulsion,75-76mm propeller set,"2-blade, 1.0mm bore, CW/CCW",RC supplier,Variant availability changes,,,"Use matched CW/CCW set; verify bore"
 2,power,1S LiHV battery,"3.8V nominal, max 4.35V, BT2.0 preferred",RC supplier,Current V3.4 power profile,,,"Use LiHV-capable charger"
 1,power,1S to 5V boost module,">=0.7A continuous, >=1A transient recommended",Electronics supplier,Required by V3.4,,,"Do not feed raw LiHV directly to XIAO 5V/BAT"
-4,electronics,AO3400A,N-MOSFET 30V SOT-23,Reichelt/other distributor,Full production,,,"Pin 1 Gate, 2 Source, 3 Drain"
+4,electronics,AO3400A,N-MOSFET 30V SOT-23,Amazon.de,Received / physically available,,"Amazon listing: 50 pcs A09T / AO3400(A), SOT-23, 30V 5.8A","Pin 1 Gate, 2 Source, 3 Drain; verify A09T top marking before placement"
 4,electronics,SS34-class Schottky,">=3A, >=20V; SMA/compatible",Electronics supplier,Required by V3.4,,,"One across each motor; cathode/band to VBAT"
 1,electronics,Schottky diode D5,">=1A; e.g. SS14/1N5819W class",Electronics supplier,Required by V3.4,,,"Boost 5V isolation; cathode to XIAO 5V"
 4,electronics,100R resistor,0603/0805 or through-hole,Electronics supplier,Commodity,,,"Series gate resistor"
