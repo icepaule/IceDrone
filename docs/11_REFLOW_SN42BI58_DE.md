@@ -39,6 +39,18 @@ Für die YIHUA bedeutet das: Nicht versuchen, eine SAC305-Reflowtemperatur von 2
 
 **Nicht mit dem vorhandenen bleihaltigen Sn60PbCu2 an derselben Lötstelle mischen.** Pb/Bi-Mischungen können niedrigschmelzende Phasen bilden und die Zuverlässigkeit verschlechtern. Für Korrekturen an Sn42Bi58-SMD-Lötstellen daher möglichst wieder Sn42Bi58 bzw. kompatibles bleifreies Material verwenden.
 
+## 1.1 Tatsächlich gelieferte Paste geprüft
+
+Die am 2026-09-19 fotografierte und gelieferte BEEYUIHF-Paste ist auf dem Etikett als **Sn42/Bi58**, **138 °C**, **Particles 25–45 µm** gekennzeichnet. Damit passt die reale Paste zum in dieser Anleitung verwendeten Niedrigtemperatur-Prozess.
+
+Für diese Spritze bleibt das Zielprofil deshalb unverändert: PCB zunächst vorwärmen/soaken und anschließend nur so weit über 138 °C bringen, bis alle Lötstellen sichtbar sauber benetzen. Ein Peak am PCB von ungefähr 155–165 °C bleibt ein geeigneter Startbereich.
+
+## 1.2 Eingegangene SMD-Bauteile: vor Bestückung verifizieren
+
+Auf dem aktuellen Foto sind beispielhaft ein **3-poliges SOT-23-Bauteil** und mehrere größere **2-polige SMD-Leistungsbauteile im SMA/ähnlichen Gehäuse** zu erkennen. Die Gehäuseformen passen grundsätzlich zu Teilen der V3.4-BOM (MOSFET-/Schottky-Stufen). Die Oberseitenmarkierungen sind auf dem Foto jedoch nicht zuverlässig lesbar.
+
+**Vor dem ersten Pastendruck deshalb noch keine Zuordnung nur nach Gehäuseform vornehmen.** Jede Tape-Reihe anhand ihrer Beschriftung/Lieferbezeichnung sortieren und die Zuordnung zu Q1–Q4, D1–D4, D5, R1–R10 und C3 dokumentieren. Bei Dioden zusätzlich die Kathodenmarkierung am realen Bauteil prüfen.
+
 ## 2. Reflow-BOM / Arbeitsplatz
 
 Die maschinenlesbare Liste liegt unter [`bom/reflow_bom.csv`](../bom/reflow_bom.csv).
