@@ -75,6 +75,15 @@ Wichtig: Die Kit-Kondensatoren sind radial bedrahtete Aluminium-Elkos. Vor einer
 
 **C3 und die vier 100-nF-Motorkondensatoren kommen nicht aus diesem Elektrolyt-Kit.** Dafür werden separate Keramikkondensatoren benötigt.
 
+## 1.5 SS14-Streifen bestätigt – aber nicht für D1–D4
+
+Die drei vorhandenen Bauteilstreifen sind als **SS14, 1 A / 40 V im SMA-/DO-214AC-Gehäuse** bestätigt. Für die V3.4-Platine gilt trotzdem:
+
+- **D1–D4:** benötigen **B340A-13-F / SS34-Klasse, 3 A / 40 V, SMA (DO-214AC)**. Die vorhandenen SS14 passen zwar mechanisch in die SMA-Footprints, sind dort aber elektrisch unterdimensioniert.
+- **D5:** der Produktions-BOM sieht **1N5819W im SOD-123FL-Footprint** vor. Die vorhandenen SS14 sind elektrisch für diese Funktion ausreichend, passen aber voraussichtlich **nicht mechanisch** auf das kleinere D5-Footprint.
+
+Darum werden die vorhandenen SS14 nicht in den ersten PCB-Reflow eingeplant. Der aktuelle Bestandsstatus steht in [`bom/pcb_smd_inventory_v34.csv`](../bom/pcb_smd_inventory_v34.csv).
+
 ## 2. Reflow-BOM / Arbeitsplatz
 
 Die maschinenlesbare Liste liegt unter [`bom/reflow_bom.csv`](../bom/reflow_bom.csv).
