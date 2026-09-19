@@ -64,7 +64,9 @@ For a perfboard prototype use a SOT-23 adapter or very short dead-bug leads.
 
 ### D1-D4
 
-Motor flyback diodes are **SS34-class ≥3 A Schottky** parts in V3.4. The earlier SS14/1 A choice is no longer the recommended motor diode.
+Motor flyback diodes are **SS34-class ≥3 A Schottky** parts in V3.4. Prefer a **3 A / 40 V SMA (DO-214AC)** device such as SS34 or B340A-class. The earlier SS14/1 A choice is **not suitable for D1-D4** in V3.4.
+
+The previously considered Amazon listing **“Chanzon SS14, 1 A / 40 V, SMA (DO-214AC)”** is currently unavailable and, independently of availability, is no longer the correct motor-flyback choice for this revision. SS14 remains electrically acceptable only for the lower-current **D5** isolation position, provided its footprint matches.
 
 ### C1 / C2
 
