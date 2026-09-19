@@ -70,10 +70,14 @@ The previously considered Amazon listing **“Chanzon SS14, 1 A / 40 V, SMA (DO-
 
 ### C1 / C2
 
-- C1: 470 µF / 10 V low-ESR
-- C2: 100 µF / 10 V low-ESR
+The available **BEEYUIHF 925 pcs / 36-value low-ESR electrolytic assortment** contains suitable electrical values for the two bulk capacitors:
 
-10 V parts provide more margin against brush-motor transients than the old 6.3 V entries.
+- **C1:** use **470 µF / 10 V** from the kit.
+- **C2:** the kit does not list 100 µF / 10 V, but does contain **100 µF / 16 V**. That is electrically acceptable and provides more voltage margin than required.
+
+The manufacturer lists the kit as radial-leaded aluminum electrolytics. Therefore the **mechanical footprint must be checked on the manufactured V3.4 PCB before installation**. If the PCB uses an SMD aluminum-electrolytic footprint, these radial parts are not drop-in replacements and must not be forced onto the SMD pads.
+
+The kit is **not a source for C3 or the four 100 nF motor capacitors**. Those are ceramic/non-electrolytic parts and remain separate BOM items.
 
 ### D5 and boost converter
 
