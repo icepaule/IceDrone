@@ -133,3 +133,8 @@ The custom manufactured PCB is intended to replace the perfboard after first-art
 
 ---
 [← Docs index](README.md) | Next: [02 - Electrical →](02_ELECTRICAL.md)
+
+
+## Manufactured PCB verification (Eurocircuits first article)
+
+The actual V3.4 B70 production documentation confirms a 70 × 30 mm, 2-layer FR-4 bare PCB with lead-free finish and electrical test. The production top-view also confirms the intended package families: AO3400A in SOT-23, D1-D4 in SMA/DO-214AC, a smaller D5 footprint in the SOD-123 class, 0603-class small passives, and two SMD aluminum-electrolytic can footprints for C1/C2 (approximately 8 mm and 6.3 mm body classes). Radial electrolytics from the BEEYUIHF kit are therefore not drop-in replacements for C1/C2.
