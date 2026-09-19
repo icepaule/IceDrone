@@ -1,7 +1,7 @@
 qty,category,item,requirement,status_for_current_build,notes
 1,equipment,YIHUA YH-853AAA,"Preheater + low-airflow hot air",existing,"120x120 mm preheater; use moderate low-temp profile"
 1,tool,IceDrone V3.4 stencil,"Matches 70x30 mm PCB paste apertures",existing,"Stencil may be larger than PCB; it is removed before heating"
-1,consumable,Sn42Bi58 solder paste,"Lead-free eutectic; 138 C melting point; stencil/SMT grade",ordered,"BEEYUIHF 30 g; follow label/storage instructions if they differ"
+1,consumable,Sn42Bi58 solder paste,"Lead-free eutectic; 138 C melting point; particles 25-45 um",received_verified,"BEEYUIHF 30 g; label verified from received syringe on 2026-09-19"
 1,consumable,Kapton high-temperature tape,"Narrow tape suitable for stencil hinge and thermocouple",existing,"Keep tape off pads/apertures"
 1,tool,Squeegee or rigid plastic card,"Straight undamaged edge",required,"45-60 degree print angle"
 2-4,fixture,FR4/old-PCB shims,"Same thickness as IceDrone PCB",recommended,"Support oversized stencil so it stays planar"
