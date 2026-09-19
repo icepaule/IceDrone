@@ -49,3 +49,20 @@ For the current build, always resolve conflicts in favor of the V3.4 electrical 
 
 ---
 [← 08 - Troubleshooting](08_TROUBLESHOOTING.md) | [Docs index](README.md) | Next: [10 - Perfboard V3.4 soldering →](10_PERFBOARD_V34_SOLDERING_DE.md)
+
+
+## SMD-Sortiment für den V3.4-PCB-Erstaufbau (2026-09-19)
+
+Für den ersten Reflow ist die **0603-Version** des **JTAREA 6390pcs SMD Electronic Component Assortment** deutlich geeigneter als die 0805-Version. Laut aktueller Produktbeschreibung enthält das 0603-Set unter anderem:
+
+- 1%-Widerstände 0603 einschließlich **100 Ω** und **100 kΩ**;
+- 0603-Keramikkondensatoren einschließlich **100 nF**;
+- Schottky-Dioden **1N5822 / SS34, SMA** (für D1-D4 geeignet);
+- **1N5819 / SS14, SMA** sowie weitere Dioden;
+- zusätzliche Transistoren, ICs, Induktivitäten und LEDs als Werkstattbestand.
+
+Damit deckt ein Set R1-R10, C3 und D1-D4 ab. **Nicht abgedeckt** sind der für D5 vorgesehene **1N5819W/B5819W im SOD-123-Footprint** sowie die beiden großen SMD-Elkos C1/C2.
+
+Für D5 separat nach **1N5819W oder B5819W, 1 A / 40 V, SOD-123** suchen. Die bereits vorhandenen SS14 im SMA-Gehäuse sind dafür mechanisch zu groß.
+
+Für C1/C2 sind allgemeine Elektrolyt-Sortimente nur dann sinnvoll, wenn Durchmesser/Land-Pattern passen. Viele 470-µF/16-V-Sortimentsteile sind 10 mm groß und passen nicht auf das geplante C1-Footprint. Für den Erstaufbau deshalb C1/C2 footprintgenau beschaffen.
