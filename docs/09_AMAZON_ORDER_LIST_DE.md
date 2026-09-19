@@ -66,3 +66,23 @@ Damit deckt ein Set R1-R10, C3 und D1-D4 ab. **Nicht abgedeckt** sind der für D
 Für D5 separat nach **1N5819W oder B5819W, 1 A / 40 V, SOD-123** suchen. Die bereits vorhandenen SS14 im SMA-Gehäuse sind dafür mechanisch zu groß.
 
 Für C1/C2 sind allgemeine Elektrolyt-Sortimente nur dann sinnvoll, wenn Durchmesser/Land-Pattern passen. Viele 470-µF/16-V-Sortimentsteile sind 10 mm groß und passen nicht auf das geplante C1-Footprint. Für den Erstaufbau deshalb C1/C2 footprintgenau beschaffen.
+
+
+## Amazon-Sets für D5 und C1/C2 (Stand 2026-09-19)
+
+### C1 + C2 gemeinsam in einem SMD-Elko-Sortiment
+
+Ein auf Amazon.de gefundenes **400 Stück / 24 Werte SMD-Aluminium-Elko-Sortiment 1 µF–1000 µF** ist für die beiden Bulk-Kondensatoren besonders interessant. Die zugehörige Stückliste nennt ausdrücklich:
+
+- **100 µF / 16 V, 6.3 × 5.4 mm** → passend zur C2-Gehäuseklasse.
+- **470 µF / 16 V, 8 × 10.5 mm** → passend zur C1-Gehäuseklasse.
+
+Damit können C1 und C2 aus **einem** Sortiment bestückt werden. Beim Wareneingang trotzdem Durchmesser und Polaritätsmarkierung gegen das PCB prüfen.
+
+Die kleinere 95-Stück/8-Werte-16-V-SMD-Elko-Box enthält zwar ebenfalls 100 µF und 470 µF, veröffentlicht aber nicht zuverlässig die Gehäusemaße je Wert. Für das IceDrone-PCB ist deshalb das 400er/24-Werte-Set mit expliziten Abmessungen vorzuziehen.
+
+### D5
+
+Für D5 wurde auf Amazon.de ein **VGOL 100er-Pack 1N5819, SOD-123, 1 A / 40 V** gefunden. Vor Checkout ausdrücklich kontrollieren, dass im Angebot **SOD-123** und nicht DO-41, SMA oder SOD-323 ausgewählt ist.
+
+Ein sinnvolles gemeinsames Sortiment, das gleichzeitig den SOD-123-D5 **und** die beiden großen SMD-Aluminium-Elkos in den benötigten Gehäusegrößen enthält, wurde nicht gefunden. Für die sichere mechanische Passung bleiben daher zwei Bestellpositionen sinnvoll: 1× SMD-Elko-Sortiment + 1× SOD-123-Schottky-Pack.
