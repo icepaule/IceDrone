@@ -59,6 +59,16 @@ Die Markierung **A09T** wird von mehreren 3400/AO3400-kompatiblen SOT-23-MOSFETs
 
 > Die vollständige Amazon-Bestellnummer wird absichtlich nicht im öffentlichen Repository dokumentiert; Produktbezeichnung und Bezugsquelle reichen für die technische Rückverfolgbarkeit aus.
 
+## 1.4 Kondensator-Kit identifiziert
+
+Für die Bulk-Kondensatoren steht das **BEEYUIHF 925 pcs / 36 values electrolytic capacitor kit** zur Verfügung. Der Hersteller listet darin unter anderem **470 µF / 10 V** sowie **100 µF / 16 V** und bezeichnet das Sortiment als Low-ESR.
+
+Damit kann **C1 elektrisch mit 470 µF / 10 V** bestückt werden. Für **C2 ist 100 µF / 16 V** ein zulässiger Ersatz für die geforderten 100 µF / mindestens 10 V.
+
+Wichtig: Diese Kit-Kondensatoren sind radial bedrahtete Aluminium-Elkos. Vor der Montage muss geprüft werden, ob das tatsächlich gefertigte PCB dafür passende Bohrungen/Pads hat. Sind C1/C2 als SMD-Aluminium-Elko-Footprints ausgeführt, passen die radialen Teile mechanisch nicht direkt.
+
+**C3 und die vier 100-nF-Motorkondensatoren kommen nicht aus diesem Elektrolyt-Kit.** Dafür werden separate Keramikkondensatoren benötigt.
+
 ## 2. Reflow-BOM / Arbeitsplatz
 
 Die maschinenlesbare Liste liegt unter [`bom/reflow_bom.csv`](../bom/reflow_bom.csv).
