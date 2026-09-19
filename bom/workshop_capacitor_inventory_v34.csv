@@ -1,0 +1,4 @@
+value,voltage,dimensions_mm,technology,possible_v34_role,final_pcb_status,notes
+470uF,10V,6x7,radial_THT_aluminum,C1 electrical value,not_recommended,"Low-ESR not specified; final V3.4 requires low-ESR SMD"
+100uF,25V,6x12,radial_THT_aluminum,C2 electrical value,not_recommended,"Higher voltage is electrically OK; THT and ESR unknown"
+100uF,35V,6x7,radial_THT_aluminum,C2 electrical value,not_recommended,"Compact THT option for bench use only; ESR unknown"
