@@ -45,11 +45,17 @@ Die am 2026-09-19 fotografierte und gelieferte BEEYUIHF-Paste ist auf dem Etiket
 
 Für diese Spritze bleibt das Zielprofil deshalb unverändert: PCB zunächst vorwärmen/soaken und anschließend nur so weit über 138 °C bringen, bis alle Lötstellen sichtbar sauber benetzen. Ein Peak am PCB von ungefähr 155–165 °C bleibt ein geeigneter Startbereich.
 
-## 1.2 Eingegangene SMD-Bauteile: vor Bestückung verifizieren
+## 1.2 Eingegangene SMD-Bauteile: SS34 jetzt bestätigt
 
-Auf dem aktuellen Foto sind beispielhaft ein **3-poliges SOT-23-Bauteil** und mehrere größere **2-polige SMD-Leistungsbauteile im SMA/ähnlichen Gehäuse** zu erkennen. Die Gehäuseformen passen grundsätzlich zu Teilen der V3.4-BOM (MOSFET-/Schottky-Stufen). Die Oberseitenmarkierungen sind auf dem Foto jedoch nicht zuverlässig lesbar.
+Das neue Mikroskopfoto zeigt auf dem größeren 2-poligen SMA/DO-214AC-Bauteil die Markierung **SS34**. Damit sind die vorgesehenen **D1–D4 Motor-Flyback-Schottkydioden** physisch vorhanden und nicht mehr nur über die Gehäuseform vermutet.
 
-**Vor dem ersten Pastendruck deshalb noch keine Zuordnung nur nach Gehäuseform vornehmen.** Jede Tape-Reihe anhand ihrer Beschriftung/Lieferbezeichnung sortieren und die Zuordnung zu Q1–Q4, D1–D4, D5, R1–R10 und C3 dokumentieren. Bei Dioden zusätzlich die Kathodenmarkierung am realen Bauteil prüfen.
+Für D1–D4 gilt beim Bestücken:
+- Bauteil: SS34, 3-A/40-V-Schottky-Klasse;
+- Gehäuse: SMA / DO-214AC;
+- **Kathodenband zur VBAT-Seite** des jeweiligen Motorzweigs;
+- bei optisch unklarer Bandmarkierung vor dem Setzen mit der Diodentest-Funktion des Multimeters verifizieren.
+
+D5 bleibt ein separates Bauteil der >=1-A-Schottky-Klasse und ist nicht mit D1–D4 zu verwechseln.
 
 ## 1.3 Q1–Q4 MOSFETs identifiziert
 
@@ -61,11 +67,11 @@ Die Markierung **A09T** wird von mehreren 3400/AO3400-kompatiblen SOT-23-MOSFETs
 
 ## 1.4 Kondensator-Kit identifiziert
 
-Für die Bulk-Kondensatoren steht das **BEEYUIHF 925 pcs / 36 values electrolytic capacitor kit** zur Verfügung. Der Hersteller listet darin unter anderem **470 µF / 10 V** sowie **100 µF / 16 V** und bezeichnet das Sortiment als Low-ESR.
+Für die Bulk-Kondensatoren steht das **925 pcs / 36 values Aluminum Capacitor Box Kit** zur Verfügung. Auf dem fotografierten Kasten sind unter anderem **470 µF / 10 V** und mehrere **100-µF-Werte ab 16 V** aufgeführt.
 
-Damit kann **C1 elektrisch mit 470 µF / 10 V** bestückt werden. Für **C2 ist 100 µF / 16 V** ein zulässiger Ersatz für die geforderten 100 µF / mindestens 10 V.
+Diese Werte passen von Kapazität/Spannungsfestigkeit grundsätzlich zu C1/C2, **das Foto bzw. Kit-Label weist jedoch keine Low-ESR-Spezifikation nach**. Deshalb sind die Kit-Elkos kein freigegebener 1:1-Ersatz für die endgültige V3.4-Flugbestückung.
 
-Wichtig: Diese Kit-Kondensatoren sind radial bedrahtete Aluminium-Elkos. Vor der Montage muss geprüft werden, ob das tatsächlich gefertigte PCB dafür passende Bohrungen/Pads hat. Sind C1/C2 als SMD-Aluminium-Elko-Footprints ausgeführt, passen die radialen Teile mechanisch nicht direkt.
+Wichtig: Die Kit-Kondensatoren sind radial bedrahtete Aluminium-Elkos. Vor einer eventuellen Bench-Nutzung muss zusätzlich geprüft werden, ob das gefertigte PCB dafür passende Bohrungen/Pads hat. Sind C1/C2 als SMD-Aluminium-Elko-Footprints ausgeführt, passen die radialen Teile mechanisch nicht direkt.
 
 **C3 und die vier 100-nF-Motorkondensatoren kommen nicht aus diesem Elektrolyt-Kit.** Dafür werden separate Keramikkondensatoren benötigt.
 
