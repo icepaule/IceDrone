@@ -51,6 +51,14 @@ Auf dem aktuellen Foto sind beispielhaft ein **3-poliges SOT-23-Bauteil** und me
 
 **Vor dem ersten Pastendruck deshalb noch keine Zuordnung nur nach Gehäuseform vornehmen.** Jede Tape-Reihe anhand ihrer Beschriftung/Lieferbezeichnung sortieren und die Zuordnung zu Q1–Q4, D1–D4, D5, R1–R10 und C3 dokumentieren. Bei Dioden zusätzlich die Kathodenmarkierung am realen Bauteil prüfen.
 
+## 1.3 Q1–Q4 MOSFETs identifiziert
+
+Die für Q1–Q4 beschafften Transistoren stammen aus einer Amazon.de-Bestellung mit der Produktbeschreibung **„50 Pcs/Set N-Channel Field Effect Transistor A09T MOS Tube for AO3400 AO3400A SOT23.30V 5.8A“**. Damit ist das auf dem Foto sichtbare SOT-23-Bauteil der vorgesehenen **AO3400/AO3400A-Klasse** zuzuordnen.
+
+Die Markierung **A09T** wird von mehreren 3400/AO3400-kompatiblen SOT-23-MOSFETs verwendet. Das für das IceDrone-Layout relevante Pinout ist **Pin 1 = Gate, Pin 2 = Source, Pin 3 = Drain**. Die genaue Orientierung auf dem PCB richtet sich nach dem V3.4-Footprint/Silkscreen und wird vor dem Setzen von Q1–Q4 noch einmal gegen die Bestückungsseite geprüft.
+
+> Die vollständige Amazon-Bestellnummer wird absichtlich nicht im öffentlichen Repository dokumentiert; Produktbezeichnung und Bezugsquelle reichen für die technische Rückverfolgbarkeit aus.
+
 ## 2. Reflow-BOM / Arbeitsplatz
 
 Die maschinenlesbare Liste liegt unter [`bom/reflow_bom.csv`](../bom/reflow_bom.csv).
