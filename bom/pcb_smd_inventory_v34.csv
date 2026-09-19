@@ -6,4 +6,4 @@ R1-R4,4,RC0603FR-07100RL,100 ohm 1%,0603,UNCONFIRMED,ORDER_IF_NOT_IDENTIFIED,"Bu
 R5-R10,6,RC0603FR-07100KL,100 kohm 1%,0603,UNCONFIRMED,ORDER_IF_NOT_IDENTIFIED,"Buy 10-20 pcs; non-polar"
 C3,1,CC0603KRX7R9BB104,100 nF 50V X7R,0603,MISSING,ORDER,"Buy 10-20 pcs; non-polar"
 C1,1,EEE-FP1A471AP preferred,470 uF 10V low-ESR,SMD can 8mm dia / ~10.2mm high,MISSING_SMD,ORDER,"BEEYUIHF radial electrolytic kit does not fit the SMD footprint; 10V Panasonic part is preferred and uses 8.3x8.3mm land size"
-C2,1,100 uF >=10V low-ESR SMD,100 uF 10-16V,SMD can 6.3mm dia / ~5.5-6.1mm high,MISSING_SMD,ORDER_AFTER_FOOTPRINT_CHECK,"Original manufacturing BOM used EEE-FK0J101AP 6.3V; final V3.4 prefers >=10V. BEEYUIHF radial electrolytic kit does not fit stencil/SMD pads"
+C2,1,Wurth 865060343005 preferred candidate,100 uF 16V low-impedance,SMD can 6.3mm dia x 5.5mm high,MISSING_SMD,ORDER_AFTER_FOOTPRINT_CHECK,"Candidate meets final >=10V requirement and 6.3mm body class; verify actual PCB land pattern before purchase. Original manufacturing BOM used EEE-FK0J101AP 6.3V; radial BEEYUIHF part does not fit stencil/SMD pads"
